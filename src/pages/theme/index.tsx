@@ -7,23 +7,23 @@ import { RotateCcw } from 'lucide-react'
 const TabsData = [
   {
     name: 'Themes',
-    href: '/settings/themes'
+    href: '/theme/themes'
   },
   {
     name: 'Typography',
-    href: '/settings/typography'
+    href: '/theme/typography'
   },
   {
     name: 'Sidebar',
-    href: '/settings/sidebar'
+    href: '/theme/sidebar'
   },
   {
     name: 'Others',
-    href: '/settings/others'
+    href: '/theme/others'
   }
 ]
 
-function SettingsPage() {
+function ThemePage() {
   const { resetToDefault } = useSettings()
   const router = useRouter()
   const segments = router.state.location.pathname.split('/').filter(Boolean)
@@ -57,4 +57,4 @@ function SettingsPage() {
   )
 }
 
-export default SettingsPage
+export default ThemePage

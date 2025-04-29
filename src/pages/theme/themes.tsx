@@ -12,7 +12,7 @@ import { presets } from '@/utils/theme-presets'
 import { useMemo } from 'react'
 import { ThemeStyleProps } from '@/types/theme'
 import { defaultThemeState } from '@/config/theme'
-import { Style } from '@/pages/settings/style'
+import { Style } from '@/pages/theme/style'
 import PanelCustom from '@/components/customizer/panelCustom'
 
 function ThemesPage() {

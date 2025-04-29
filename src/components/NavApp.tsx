@@ -1,8 +1,5 @@
 import { SidebarTrigger } from './ui/sidebar'
 import ModeToggle from './theme/ModeToggle'
-import { Button } from './ui/button'
-import { Link } from '@tanstack/react-router'
-import { Palette } from 'lucide-react'
 import { useTheme } from '@/providers/ThemesProvider'
 import { cn } from '@/lib/utils'
 import { SidebarCollapsibleEnum, SidebarPositionsEnum } from '@/data/Sidebar'
@@ -29,11 +26,6 @@ function NavApp() {
           getSidebarSettings()?.position === SidebarPositionsEnum.Right && 'mr-6'
         )}
       >
-        <Button variant='outline' size='icon' className='cursor-pointer' asChild>
-          <Link to='/settings/themes'>
-            <Palette className='size-5' />
-          </Link>
-        </Button>
         <ModeToggle />
       </div>
     </nav>

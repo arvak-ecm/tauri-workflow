@@ -11,18 +11,25 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as SettingsImport } from './routes/settings'
+import { Route as ThemeImport } from './routes/theme'
+import { Route as LogoutImport } from './routes/logout'
 import { Route as IndexImport } from './routes/index'
-import { Route as SettingsTypographyImport } from './routes/settings/typography'
-import { Route as SettingsThemesImport } from './routes/settings/themes'
-import { Route as SettingsSidebarImport } from './routes/settings/sidebar'
-import { Route as SettingsOthersImport } from './routes/settings/others'
+import { Route as ThemeTypographyImport } from './routes/theme/typography'
+import { Route as ThemeThemesImport } from './routes/theme/themes'
+import { Route as ThemeSidebarImport } from './routes/theme/sidebar'
+import { Route as ThemeOthersImport } from './routes/theme/others'
 
 // Create/Update Routes
 
-const SettingsRoute = SettingsImport.update({
-  id: '/settings',
-  path: '/settings',
+const ThemeRoute = ThemeImport.update({
+  id: '/theme',
+  path: '/theme',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LogoutRoute = LogoutImport.update({
+  id: '/logout',
+  path: '/logout',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,28 +39,28 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const SettingsTypographyRoute = SettingsTypographyImport.update({
+const ThemeTypographyRoute = ThemeTypographyImport.update({
   id: '/typography',
   path: '/typography',
-  getParentRoute: () => SettingsRoute,
+  getParentRoute: () => ThemeRoute,
 } as any)
 
-const SettingsThemesRoute = SettingsThemesImport.update({
+const ThemeThemesRoute = ThemeThemesImport.update({
   id: '/themes',
   path: '/themes',
-  getParentRoute: () => SettingsRoute,
+  getParentRoute: () => ThemeRoute,
 } as any)
 
-const SettingsSidebarRoute = SettingsSidebarImport.update({
+const ThemeSidebarRoute = ThemeSidebarImport.update({
   id: '/sidebar',
   path: '/sidebar',
-  getParentRoute: () => SettingsRoute,
+  getParentRoute: () => ThemeRoute,
 } as any)
 
-const SettingsOthersRoute = SettingsOthersImport.update({
+const ThemeOthersRoute = ThemeOthersImport.update({
   id: '/others',
   path: '/others',
-  getParentRoute: () => SettingsRoute,
+  getParentRoute: () => ThemeRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -67,128 +74,141 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsImport
+    '/logout': {
+      id: '/logout'
+      path: '/logout'
+      fullPath: '/logout'
+      preLoaderRoute: typeof LogoutImport
       parentRoute: typeof rootRoute
     }
-    '/settings/others': {
-      id: '/settings/others'
+    '/theme': {
+      id: '/theme'
+      path: '/theme'
+      fullPath: '/theme'
+      preLoaderRoute: typeof ThemeImport
+      parentRoute: typeof rootRoute
+    }
+    '/theme/others': {
+      id: '/theme/others'
       path: '/others'
-      fullPath: '/settings/others'
-      preLoaderRoute: typeof SettingsOthersImport
-      parentRoute: typeof SettingsImport
+      fullPath: '/theme/others'
+      preLoaderRoute: typeof ThemeOthersImport
+      parentRoute: typeof ThemeImport
     }
-    '/settings/sidebar': {
-      id: '/settings/sidebar'
+    '/theme/sidebar': {
+      id: '/theme/sidebar'
       path: '/sidebar'
-      fullPath: '/settings/sidebar'
-      preLoaderRoute: typeof SettingsSidebarImport
-      parentRoute: typeof SettingsImport
+      fullPath: '/theme/sidebar'
+      preLoaderRoute: typeof ThemeSidebarImport
+      parentRoute: typeof ThemeImport
     }
-    '/settings/themes': {
-      id: '/settings/themes'
+    '/theme/themes': {
+      id: '/theme/themes'
       path: '/themes'
-      fullPath: '/settings/themes'
-      preLoaderRoute: typeof SettingsThemesImport
-      parentRoute: typeof SettingsImport
+      fullPath: '/theme/themes'
+      preLoaderRoute: typeof ThemeThemesImport
+      parentRoute: typeof ThemeImport
     }
-    '/settings/typography': {
-      id: '/settings/typography'
+    '/theme/typography': {
+      id: '/theme/typography'
       path: '/typography'
-      fullPath: '/settings/typography'
-      preLoaderRoute: typeof SettingsTypographyImport
-      parentRoute: typeof SettingsImport
+      fullPath: '/theme/typography'
+      preLoaderRoute: typeof ThemeTypographyImport
+      parentRoute: typeof ThemeImport
     }
   }
 }
 
 // Create and export the route tree
 
-interface SettingsRouteChildren {
-  SettingsOthersRoute: typeof SettingsOthersRoute
-  SettingsSidebarRoute: typeof SettingsSidebarRoute
-  SettingsThemesRoute: typeof SettingsThemesRoute
-  SettingsTypographyRoute: typeof SettingsTypographyRoute
+interface ThemeRouteChildren {
+  ThemeOthersRoute: typeof ThemeOthersRoute
+  ThemeSidebarRoute: typeof ThemeSidebarRoute
+  ThemeThemesRoute: typeof ThemeThemesRoute
+  ThemeTypographyRoute: typeof ThemeTypographyRoute
 }
 
-const SettingsRouteChildren: SettingsRouteChildren = {
-  SettingsOthersRoute: SettingsOthersRoute,
-  SettingsSidebarRoute: SettingsSidebarRoute,
-  SettingsThemesRoute: SettingsThemesRoute,
-  SettingsTypographyRoute: SettingsTypographyRoute,
+const ThemeRouteChildren: ThemeRouteChildren = {
+  ThemeOthersRoute: ThemeOthersRoute,
+  ThemeSidebarRoute: ThemeSidebarRoute,
+  ThemeThemesRoute: ThemeThemesRoute,
+  ThemeTypographyRoute: ThemeTypographyRoute,
 }
 
-const SettingsRouteWithChildren = SettingsRoute._addFileChildren(
-  SettingsRouteChildren,
-)
+const ThemeRouteWithChildren = ThemeRoute._addFileChildren(ThemeRouteChildren)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/settings': typeof SettingsRouteWithChildren
-  '/settings/others': typeof SettingsOthersRoute
-  '/settings/sidebar': typeof SettingsSidebarRoute
-  '/settings/themes': typeof SettingsThemesRoute
-  '/settings/typography': typeof SettingsTypographyRoute
+  '/logout': typeof LogoutRoute
+  '/theme': typeof ThemeRouteWithChildren
+  '/theme/others': typeof ThemeOthersRoute
+  '/theme/sidebar': typeof ThemeSidebarRoute
+  '/theme/themes': typeof ThemeThemesRoute
+  '/theme/typography': typeof ThemeTypographyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/settings': typeof SettingsRouteWithChildren
-  '/settings/others': typeof SettingsOthersRoute
-  '/settings/sidebar': typeof SettingsSidebarRoute
-  '/settings/themes': typeof SettingsThemesRoute
-  '/settings/typography': typeof SettingsTypographyRoute
+  '/logout': typeof LogoutRoute
+  '/theme': typeof ThemeRouteWithChildren
+  '/theme/others': typeof ThemeOthersRoute
+  '/theme/sidebar': typeof ThemeSidebarRoute
+  '/theme/themes': typeof ThemeThemesRoute
+  '/theme/typography': typeof ThemeTypographyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/settings': typeof SettingsRouteWithChildren
-  '/settings/others': typeof SettingsOthersRoute
-  '/settings/sidebar': typeof SettingsSidebarRoute
-  '/settings/themes': typeof SettingsThemesRoute
-  '/settings/typography': typeof SettingsTypographyRoute
+  '/logout': typeof LogoutRoute
+  '/theme': typeof ThemeRouteWithChildren
+  '/theme/others': typeof ThemeOthersRoute
+  '/theme/sidebar': typeof ThemeSidebarRoute
+  '/theme/themes': typeof ThemeThemesRoute
+  '/theme/typography': typeof ThemeTypographyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/settings'
-    | '/settings/others'
-    | '/settings/sidebar'
-    | '/settings/themes'
-    | '/settings/typography'
+    | '/logout'
+    | '/theme'
+    | '/theme/others'
+    | '/theme/sidebar'
+    | '/theme/themes'
+    | '/theme/typography'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/settings'
-    | '/settings/others'
-    | '/settings/sidebar'
-    | '/settings/themes'
-    | '/settings/typography'
+    | '/logout'
+    | '/theme'
+    | '/theme/others'
+    | '/theme/sidebar'
+    | '/theme/themes'
+    | '/theme/typography'
   id:
     | '__root__'
     | '/'
-    | '/settings'
-    | '/settings/others'
-    | '/settings/sidebar'
-    | '/settings/themes'
-    | '/settings/typography'
+    | '/logout'
+    | '/theme'
+    | '/theme/others'
+    | '/theme/sidebar'
+    | '/theme/themes'
+    | '/theme/typography'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  SettingsRoute: typeof SettingsRouteWithChildren
+  LogoutRoute: typeof LogoutRoute
+  ThemeRoute: typeof ThemeRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  SettingsRoute: SettingsRouteWithChildren,
+  LogoutRoute: LogoutRoute,
+  ThemeRoute: ThemeRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -202,36 +222,40 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/settings"
+        "/logout",
+        "/theme"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/settings": {
-      "filePath": "settings.tsx",
+    "/logout": {
+      "filePath": "logout.tsx"
+    },
+    "/theme": {
+      "filePath": "theme.tsx",
       "children": [
-        "/settings/others",
-        "/settings/sidebar",
-        "/settings/themes",
-        "/settings/typography"
+        "/theme/others",
+        "/theme/sidebar",
+        "/theme/themes",
+        "/theme/typography"
       ]
     },
-    "/settings/others": {
-      "filePath": "settings/others.tsx",
-      "parent": "/settings"
+    "/theme/others": {
+      "filePath": "theme/others.tsx",
+      "parent": "/theme"
     },
-    "/settings/sidebar": {
-      "filePath": "settings/sidebar.tsx",
-      "parent": "/settings"
+    "/theme/sidebar": {
+      "filePath": "theme/sidebar.tsx",
+      "parent": "/theme"
     },
-    "/settings/themes": {
-      "filePath": "settings/themes.tsx",
-      "parent": "/settings"
+    "/theme/themes": {
+      "filePath": "theme/themes.tsx",
+      "parent": "/theme"
     },
-    "/settings/typography": {
-      "filePath": "settings/typography.tsx",
-      "parent": "/settings"
+    "/theme/typography": {
+      "filePath": "theme/typography.tsx",
+      "parent": "/theme"
     }
   }
 }

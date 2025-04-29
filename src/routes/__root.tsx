@@ -19,6 +19,10 @@ import { getMode } from '@/utils/getMode'
 import { Settings } from 'lucide-react'
 import NavApp from '@/components/NavApp'
 import { SidebarPositionsEnum } from '@/data/Sidebar'
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react'
+import { loginRequest } from '@/auth/authConfig'
+import { Button } from '@/components/ui/button'
+import { NavUser } from '@/auth/NavUser'
 
 export const Route = createRootRoute({
   loader: async () => {
@@ -26,18 +30,44 @@ export const Route = createRootRoute({
 
     return { mode }
   },
-  component: SidebarProviderRoute
+  component: App
 })
 
-function SidebarProviderRoute() {
+function App() {
+  const { instance } = useMsal()
   const { mode } = Route.useLoaderData()
+
+  const handleLogin = () => {
+    instance.loginRedirect(loginRequest).catch(e => {
+      console.log(e)
+    })
+  }
+
   return (
-    <SettingsProvider mode={mode}>
-      <ThemeProvider>
-        <AppSidebarProvider />
-      </ThemeProvider>
-    </SettingsProvider>
+    <>
+      <SettingsProvider mode={mode}>
+        <ThemeProvider>
+          <AuthenticatedTemplate>
+            <SidebarProviderRoute />
+          </AuthenticatedTemplate>
+          <UnauthenticatedTemplate>
+            <div className='flex h-screen flex-col items-center justify-center'>
+              <div>
+                <h1>App Title here </h1>
+                <Button variant='default' onClick={handleLogin}>
+                  Login
+                </Button>
+              </div>
+            </div>
+          </UnauthenticatedTemplate>
+        </ThemeProvider>
+      </SettingsProvider>
+    </>
   )
+}
+
+function SidebarProviderRoute() {
+  return <AppSidebarProvider />
 }
 
 function AppSidebarProvider() {
@@ -76,7 +106,7 @@ function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link to='/settings'>
+                <Link to='/theme'>
                   <Settings /> Settings
                 </Link>
               </SidebarMenuButton>
@@ -84,7 +114,9 @@ function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <NavUser user={{ name: 'Cardo', email: 'cardo@gmail.com', avatar: 'https://i.pravatar.cc/150?img=1' }} />
+      </SidebarFooter>
     </Sidebar>
   )
 }
