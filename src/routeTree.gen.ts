@@ -18,6 +18,8 @@ import { Route as ThemeTypographyImport } from './routes/theme/typography'
 import { Route as ThemeThemesImport } from './routes/theme/themes'
 import { Route as ThemeSidebarImport } from './routes/theme/sidebar'
 import { Route as ThemeOthersImport } from './routes/theme/others'
+import { Route as AdminUsersImport } from './routes/admin/users'
+import { Route as AdminRolesImport } from './routes/admin/roles'
 
 // Create/Update Routes
 
@@ -63,6 +65,18 @@ const ThemeOthersRoute = ThemeOthersImport.update({
   getParentRoute: () => ThemeRoute,
 } as any)
 
+const AdminUsersRoute = AdminUsersImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminRolesRoute = AdminRolesImport.update({
+  id: '/admin/roles',
+  path: '/admin/roles',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -86,6 +100,20 @@ declare module '@tanstack/react-router' {
       path: '/theme'
       fullPath: '/theme'
       preLoaderRoute: typeof ThemeImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/roles': {
+      id: '/admin/roles'
+      path: '/admin/roles'
+      fullPath: '/admin/roles'
+      preLoaderRoute: typeof AdminRolesImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersImport
       parentRoute: typeof rootRoute
     }
     '/theme/others': {
@@ -141,6 +169,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
@@ -151,6 +181,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
@@ -162,6 +194,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
@@ -174,6 +208,8 @@ export interface FileRouteTypes {
     | '/'
     | '/logout'
     | '/theme'
+    | '/admin/roles'
+    | '/admin/users'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
@@ -183,6 +219,8 @@ export interface FileRouteTypes {
     | '/'
     | '/logout'
     | '/theme'
+    | '/admin/roles'
+    | '/admin/users'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
@@ -192,6 +230,8 @@ export interface FileRouteTypes {
     | '/'
     | '/logout'
     | '/theme'
+    | '/admin/roles'
+    | '/admin/users'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
@@ -203,12 +243,16 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LogoutRoute: typeof LogoutRoute
   ThemeRoute: typeof ThemeRouteWithChildren
+  AdminRolesRoute: typeof AdminRolesRoute
+  AdminUsersRoute: typeof AdminUsersRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LogoutRoute: LogoutRoute,
   ThemeRoute: ThemeRouteWithChildren,
+  AdminRolesRoute: AdminRolesRoute,
+  AdminUsersRoute: AdminUsersRoute,
 }
 
 export const routeTree = rootRoute
@@ -223,7 +267,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/logout",
-        "/theme"
+        "/theme",
+        "/admin/roles",
+        "/admin/users"
       ]
     },
     "/": {
@@ -240,6 +286,12 @@ export const routeTree = rootRoute
         "/theme/themes",
         "/theme/typography"
       ]
+    },
+    "/admin/roles": {
+      "filePath": "admin/roles.tsx"
+    },
+    "/admin/users": {
+      "filePath": "admin/users.tsx"
     },
     "/theme/others": {
       "filePath": "theme/others.tsx",

@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client'
 
 import { routeTree } from './routeTree.gen'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
-import { msalConfig } from './auth/authConfig'
+import { msalConfig } from './auth/msal/authConfig'
 import { AuthenticationResult, EventMessage, EventType, PublicClientApplication } from '@azure/msal-browser'
 import { MsalProvider } from '@azure/msal-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'

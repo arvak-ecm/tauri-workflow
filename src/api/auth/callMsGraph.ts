@@ -1,4 +1,4 @@
-import { graphConfig } from '@/auth/authConfig'
+import { graphConfig } from '@/auth/msal/authConfig'
 
 export async function callMsGraph(accessToken: string) {
   const headers = new Headers()
