@@ -15,7 +15,7 @@ import HeaderTable from './table-header'
 import { cn } from '@/lib/utils'
 import Paginator from './table-paginator'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import Loading from '@/components/loading'
+import Loading from '../loading'
 
 interface TableProps<T> {
   columns: any[]

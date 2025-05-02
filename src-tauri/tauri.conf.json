@@ -16,16 +16,28 @@
         "minWidth": 900,
         "minHeight": 800,
         "width": 900,
-        "height": 800
+        "height": 800,
+        "resizable": true,
+        "decorations": true,
+        "visible": true,
+        "zoomHotkeysEnabled": false,
+        "backgroundColor": "#FF0000",
+        "dragDropEnabled": false
       }
     ],
     "security": {
-      "csp": null
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["**"]
+      },
+      "capabilities": ["core", "fs", "store", "shell"],
+      "csp": "default-src 'self' ipc: http://ipc.localhost; img-src 'self' asset: http://asset.localhost"
     }
   },
   "bundle": {
     "active": true,
     "targets": "all",
+    "resources": ["resources/**/*"],
     "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"]
   }
 }

@@ -11,6 +11,7 @@ import { MenuGroup, MenuSingle } from '@/types/sidebar'
 import { Link } from '@tanstack/react-router'
 import { ChevronRight } from 'lucide-react'
 import LucideIcon from './LucideIcon'
+import { cn } from '@/lib/utils'
 
 interface Props {
   className?: string
@@ -29,7 +30,7 @@ function SideBarGroupCollapsible({ className, menu }: Props) {
     <>
       {menu.nameGroup && <SidebarGroupLabel>{menu.nameGroup}</SidebarGroupLabel>}
       <SidebarMenu>
-        <Collapsible asChild className='group/collapsible'>
+        <Collapsible asChild className={cn('group/collapsible', className)}>
           <SidebarMenuItem>
             <CollapsibleTrigger asChild>
               <SidebarMenuButton tooltip={menu.name + existMenuTitle(menu, pageInfo.title)}>

@@ -1,6 +1,3 @@
-import type { LucideProps } from 'lucide-react'
-import type { ForwardRefExoticComponent, RefAttributes } from 'react'
-
 type SidebarVariant = 'sidebar' | 'inset' | 'floating'
 type SidebarPosition = 'left' | 'right'
 type SidebarCollapsible = 'none' | 'icon' | 'offcanvas'
@@ -10,8 +7,6 @@ export type SidebarSettings = {
   variant: SidebarVariant
   collapsible: SidebarCollapsible
 }
-
-type IconType = ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
 
 export interface MenuSingle {
   type: 'single'
