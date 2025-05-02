@@ -1,6 +1,3 @@
-export type SidebarVariant = 'sidebar' | 'inset' | 'floating'
-export type SidebarPosition = 'left' | 'right'
-
 export enum SidebarVariantsEnum {
   Sidebar = 'sidebar',
   Inset = 'inset',
@@ -18,11 +15,3 @@ export enum SidebarCollapsibleEnum {
   Offcanvas = 'offcanvas',
   Undefined = 'undefined'
 }
-
-export type SidebarPositionsProps = SidebarPositionsEnum.Left | SidebarPositionsEnum.Right
-export type SidebarVariantsProps =
-  | SidebarVariantsEnum.Sidebar
-  | SidebarVariantsEnum.Inset
-  | SidebarVariantsEnum.Floating
-
-export type SidebarCollapsibleProps = 'none' | 'icon' | 'offcanvas' | undefined

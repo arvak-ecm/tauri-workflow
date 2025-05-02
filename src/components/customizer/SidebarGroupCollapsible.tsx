@@ -1,52 +1,51 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
-  SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub
 } from '@/components/ui/sidebar'
-import { cn } from '@/lib/utils'
+import usePageInfo from '@/hooks/usePageInfo'
+import { MenuGroup, MenuSingle } from '@/types/sidebar'
 import { Link } from '@tanstack/react-router'
-import { ChevronRight, LucideProps } from 'lucide-react'
-import React from 'react'
+import { ChevronRight } from 'lucide-react'
+import LucideIcon from './LucideIcon'
 
 interface Props {
   className?: string
-  menu: {
-    groupLabel?: string
-    title: string
-    icon: React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>
-    menu: {
-      name: string
-      icon: React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>
-      href: string
-    }[]
-  }
+  menu: MenuGroup
+}
+
+function existMenuTitle(menu: MenuGroup, menuTitle: string) {
+  const exist = menu.subMenu?.filter(item => item.name === menuTitle)[0]
+  return exist ? '/' + menuTitle : ''
 }
 
 function SideBarGroupCollapsible({ className, menu }: Props) {
+  const pageInfo = usePageInfo()
+  console.log(menu)
   return (
-    <SidebarGroup className={cn('group-data-[collapsible=icon]:hidden', className)}>
-      {menu.groupLabel && <SidebarGroupLabel>{menu.groupLabel}</SidebarGroupLabel>}
+    <>
+      {menu.nameGroup && <SidebarGroupLabel>{menu.nameGroup}</SidebarGroupLabel>}
       <SidebarMenu>
         <Collapsible asChild className='group/collapsible'>
           <SidebarMenuItem>
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton tooltip={menu.title}>
-                <menu.icon />
-                <span>{menu.title}</span>
+              <SidebarMenuButton tooltip={menu.name + existMenuTitle(menu, pageInfo.title)}>
+                {menu.icon && <LucideIcon iconName={menu.icon} className='text-sidebar-foreground' />}
+                <span>{menu.name}</span>
                 <ChevronRight className='group-menu-[state=open]/collapsible:rotate-90 ml-auto transition-transform duration-200' />
               </SidebarMenuButton>
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarMenuSub>
-                {menu.menu.map((item, index) => (
+                {menu.subMenu?.map((item: MenuSingle, index) => (
                   <SidebarMenuItem key={index}>
                     <SidebarMenuButton asChild>
-                      <Link to={item.href}>
-                        <item.icon /> {item.name}
+                      <Link className='' to={item.href} activeProps={{ className: 'link-active-collapsible' }}>
+                        {item.icon && <LucideIcon iconName={item.icon} className='text-sidebar-foreground' />}
+                        {item.name}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -56,7 +55,7 @@ function SideBarGroupCollapsible({ className, menu }: Props) {
           </SidebarMenuItem>
         </Collapsible>
       </SidebarMenu>
-    </SidebarGroup>
+    </>
   )
 }
 

@@ -1,14 +1,17 @@
 import { createRootRoute } from '@tanstack/react-router'
 import '@/styles/global.css'
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar'
-import { ThemeProvider, useTheme } from '@/providers/ThemesProvider'
-import { SettingsProvider } from '@/contexts/settingsContext'
-import { getMode } from '@/utils/getMode'
+import { ThemeProvider } from '@/core/providers/ThemesProvider'
+import { SettingsProvider } from '@/core/contexts/settingsContext'
+import { getMode } from '@/core/utils/getMode'
 import { SidebarPositionsEnum } from '@/data/Sidebar'
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react'
 import LoginPage from '@/pages/auth/login'
 import AppSidebar from '@/auth/nav/AppSidebar'
-import ContentApp from '@/components/ContentApp'
+import ContentApp from '@/auth/nav/ContentApp'
+import { useAtomValue } from 'jotai'
+import { sidebarIsOpenAtom, sidebarSettingsAtom } from '@/atom/globals'
+import { SidebarSettings } from '@/types/sidebar'
 
 export const Route = createRootRoute({
   loader: async () => {
@@ -38,14 +41,15 @@ function App() {
 }
 
 function AppSidebarProvider() {
-  const { getSidebarSettings } = useTheme()
+  const sidebarSettings = useAtomValue<SidebarSettings>(sidebarSettingsAtom)
+  const isOpen = useAtomValue<boolean>(sidebarIsOpenAtom)
   return (
-    <SidebarProvider>
-      {getSidebarSettings()?.position === SidebarPositionsEnum.Left && <AppSidebar />}
+    <SidebarProvider defaultOpen={isOpen}>
+      {sidebarSettings.position === SidebarPositionsEnum.Left && <AppSidebar />}
       <SidebarInset>
         <ContentApp />
       </SidebarInset>
-      {getSidebarSettings()?.position === SidebarPositionsEnum.Right && <AppSidebar />}
+      {sidebarSettings.position === SidebarPositionsEnum.Right && <AppSidebar />}
     </SidebarProvider>
   )
 }

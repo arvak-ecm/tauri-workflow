@@ -1,4 +1,4 @@
-import TypographyPage from '@/pages/theme/typography'
+import TypographyPage from '@/core/pages/theme/typography'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/theme/typography')({

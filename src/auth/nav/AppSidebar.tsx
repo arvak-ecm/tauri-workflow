@@ -1,19 +1,54 @@
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from '@/components/ui/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from '@/components/ui/sidebar'
 import { NavUser } from './NavUser'
-import { useTheme } from '@/providers/ThemesProvider'
-import NavAdmin from './NavAdmin'
+import { sidebarSettingsAtom } from '@/atom/globals'
+import { useAtomValue } from 'jotai'
+import { SidebarSettings } from '@/types/sidebar'
+import { GalleryVerticalEnd } from 'lucide-react'
+import { AppSwitcher } from './app-switcher'
+import { getMenuApp } from '@/app/renegociate/menu-app'
+import SidebarSingleMenu from '@/components/customizer/SidebarSingleMenu'
+import SideBarGroupCollapsible from '@/components/customizer/SidebarGroupCollapsible'
+
+const menu = [
+  { id: 'home' },
+  { id: 'new-case', children: ['new-grc', 'new-comercials'] },
+  { id: 'dashboard' },
+  { id: 'admin', children: ['admin-users', 'admin-roles'] }
+]
 
 function AppSidebar() {
-  const { getSidebarSettings } = useTheme()
+  const sidebarSettings = useAtomValue<SidebarSettings>(sidebarSettingsAtom)
+  const menuApp = getMenuApp(menu)
+
+  console.log(menuApp)
+
   return (
     <Sidebar
-      variant={getSidebarSettings()?.variant}
-      side={getSidebarSettings()?.position}
-      collapsible={getSidebarSettings()?.collapsible}
+      variant={sidebarSettings.variant}
+      side={sidebarSettings.position}
+      collapsible={sidebarSettings.collapsible}
     >
-      <SidebarHeader />
+      <SidebarHeader>
+        <AppSwitcher
+          apps={[
+            {
+              name: 'Visación y Curse',
+              logo: GalleryVerticalEnd,
+              description: 'Grc'
+            }
+          ]}
+        />
+      </SidebarHeader>
       <SidebarContent>
-        <NavAdmin />
+        <SidebarGroup>
+          {menuApp.map(item => {
+            if (item.type === 'single') {
+              return <SidebarSingleMenu {...item} />
+            } else {
+              return <SideBarGroupCollapsible className={'group/' + item.id} menu={item} />
+            }
+          })}
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={{ name: 'Cardo', email: 'cardo@gmail.com', avatar: 'https://i.pravatar.cc/150?img=1' }} />

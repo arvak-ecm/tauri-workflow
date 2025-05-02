@@ -1,24 +1,19 @@
 import ReactDOM from 'react-dom/client'
 
-import { routeTree } from './routeTree.gen'
-import { createRouter, RouterProvider } from '@tanstack/react-router'
+import { RouterProvider } from '@tanstack/react-router'
 import { msalConfig } from './auth/msal/authConfig'
 import { AuthenticationResult, EventMessage, EventType, PublicClientApplication } from '@azure/msal-browser'
 import { MsalProvider } from '@azure/msal-react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { createRouter, queryClient } from '@/router.tsx'
+import { Provider } from 'jotai'
+import { globalStore, HydrateAtoms } from './atom/globals'
+import { initialValues } from './atom/initial-values'
 
-const router = createRouter({ routeTree })
+const router = createRouter()
 
 export const msalInstance = new PublicClientApplication(msalConfig)
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 10
-    }
-  }
-})
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
@@ -50,12 +45,16 @@ if (!rootElement.innerHTML) {
       }
     })
     root.render(
-      <MsalProvider instance={msalInstance}>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-      </MsalProvider>
+      <Provider store={globalStore}>
+        <HydrateAtoms initialValues={initialValues}>
+          <MsalProvider instance={msalInstance}>
+            <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+              <ReactQueryDevtools />
+            </QueryClientProvider>
+          </MsalProvider>
+        </HydrateAtoms>
+      </Provider>
     )
   })
 }

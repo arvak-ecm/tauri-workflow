@@ -1,9 +1,9 @@
 import SideBarGroupCollapsible from '@/components/customizer/SidebarGroupCollapsible'
-import { ShieldUser, UserIcon, Users } from 'lucide-react'
+import { ServerCog, ShieldUser, Users } from 'lucide-react'
 
 const menuAdmin = {
   title: 'Admin',
-  icon: UserIcon,
+  icon: ServerCog,
   menu: [
     {
       name: 'Users',
@@ -19,7 +19,7 @@ const menuAdmin = {
 }
 
 function NavAdmin() {
-  return <SideBarGroupCollapsible className='' menu={menuAdmin} />
+  return <SideBarGroupCollapsible className='group/admin' menu={menuAdmin} />
 }
 
 export default NavAdmin

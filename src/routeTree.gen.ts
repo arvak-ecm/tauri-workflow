@@ -13,13 +13,15 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ThemeImport } from './routes/theme'
 import { Route as LogoutImport } from './routes/logout'
+import { Route as DashboardImport } from './routes/dashboard'
 import { Route as IndexImport } from './routes/index'
+import { Route as VycHomeImport } from './routes/vyc/home'
 import { Route as ThemeTypographyImport } from './routes/theme/typography'
 import { Route as ThemeThemesImport } from './routes/theme/themes'
 import { Route as ThemeSidebarImport } from './routes/theme/sidebar'
 import { Route as ThemeOthersImport } from './routes/theme/others'
-import { Route as AdminUsersImport } from './routes/admin/users'
-import { Route as AdminRolesImport } from './routes/admin/roles'
+import { Route as VycAdminUsersImport } from './routes/vyc/admin/users'
+import { Route as VycAdminRolesImport } from './routes/vyc/admin/roles'
 
 // Create/Update Routes
 
@@ -35,9 +37,21 @@ const LogoutRoute = LogoutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DashboardRoute = DashboardImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const VycHomeRoute = VycHomeImport.update({
+  id: '/vyc/home',
+  path: '/vyc/home',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -65,15 +79,15 @@ const ThemeOthersRoute = ThemeOthersImport.update({
   getParentRoute: () => ThemeRoute,
 } as any)
 
-const AdminUsersRoute = AdminUsersImport.update({
-  id: '/admin/users',
-  path: '/admin/users',
+const VycAdminUsersRoute = VycAdminUsersImport.update({
+  id: '/vyc/admin/users',
+  path: '/vyc/admin/users',
   getParentRoute: () => rootRoute,
 } as any)
 
-const AdminRolesRoute = AdminRolesImport.update({
-  id: '/admin/roles',
-  path: '/admin/roles',
+const VycAdminRolesRoute = VycAdminRolesImport.update({
+  id: '/vyc/admin/roles',
+  path: '/vyc/admin/roles',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -88,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardImport
+      parentRoute: typeof rootRoute
+    }
     '/logout': {
       id: '/logout'
       path: '/logout'
@@ -100,20 +121,6 @@ declare module '@tanstack/react-router' {
       path: '/theme'
       fullPath: '/theme'
       preLoaderRoute: typeof ThemeImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/roles': {
-      id: '/admin/roles'
-      path: '/admin/roles'
-      fullPath: '/admin/roles'
-      preLoaderRoute: typeof AdminRolesImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/users': {
-      id: '/admin/users'
-      path: '/admin/users'
-      fullPath: '/admin/users'
-      preLoaderRoute: typeof AdminUsersImport
       parentRoute: typeof rootRoute
     }
     '/theme/others': {
@@ -144,6 +151,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThemeTypographyImport
       parentRoute: typeof ThemeImport
     }
+    '/vyc/home': {
+      id: '/vyc/home'
+      path: '/vyc/home'
+      fullPath: '/vyc/home'
+      preLoaderRoute: typeof VycHomeImport
+      parentRoute: typeof rootRoute
+    }
+    '/vyc/admin/roles': {
+      id: '/vyc/admin/roles'
+      path: '/vyc/admin/roles'
+      fullPath: '/vyc/admin/roles'
+      preLoaderRoute: typeof VycAdminRolesImport
+      parentRoute: typeof rootRoute
+    }
+    '/vyc/admin/users': {
+      id: '/vyc/admin/users'
+      path: '/vyc/admin/users'
+      fullPath: '/vyc/admin/users'
+      preLoaderRoute: typeof VycAdminUsersImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -167,92 +195,108 @@ const ThemeRouteWithChildren = ThemeRoute._addFileChildren(ThemeRouteChildren)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
-  '/admin/roles': typeof AdminRolesRoute
-  '/admin/users': typeof AdminUsersRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
+  '/vyc/home': typeof VycHomeRoute
+  '/vyc/admin/roles': typeof VycAdminRolesRoute
+  '/vyc/admin/users': typeof VycAdminUsersRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
-  '/admin/roles': typeof AdminRolesRoute
-  '/admin/users': typeof AdminUsersRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
+  '/vyc/home': typeof VycHomeRoute
+  '/vyc/admin/roles': typeof VycAdminRolesRoute
+  '/vyc/admin/users': typeof VycAdminUsersRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
-  '/admin/roles': typeof AdminRolesRoute
-  '/admin/users': typeof AdminUsersRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
+  '/vyc/home': typeof VycHomeRoute
+  '/vyc/admin/roles': typeof VycAdminRolesRoute
+  '/vyc/admin/users': typeof VycAdminUsersRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
     | '/logout'
     | '/theme'
-    | '/admin/roles'
-    | '/admin/users'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
+    | '/vyc/home'
+    | '/vyc/admin/roles'
+    | '/vyc/admin/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
     | '/logout'
     | '/theme'
-    | '/admin/roles'
-    | '/admin/users'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
+    | '/vyc/home'
+    | '/vyc/admin/roles'
+    | '/vyc/admin/users'
   id:
     | '__root__'
     | '/'
+    | '/dashboard'
     | '/logout'
     | '/theme'
-    | '/admin/roles'
-    | '/admin/users'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
+    | '/vyc/home'
+    | '/vyc/admin/roles'
+    | '/vyc/admin/users'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
   LogoutRoute: typeof LogoutRoute
   ThemeRoute: typeof ThemeRouteWithChildren
-  AdminRolesRoute: typeof AdminRolesRoute
-  AdminUsersRoute: typeof AdminUsersRoute
+  VycHomeRoute: typeof VycHomeRoute
+  VycAdminRolesRoute: typeof VycAdminRolesRoute
+  VycAdminUsersRoute: typeof VycAdminUsersRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
   LogoutRoute: LogoutRoute,
   ThemeRoute: ThemeRouteWithChildren,
-  AdminRolesRoute: AdminRolesRoute,
-  AdminUsersRoute: AdminUsersRoute,
+  VycHomeRoute: VycHomeRoute,
+  VycAdminRolesRoute: VycAdminRolesRoute,
+  VycAdminUsersRoute: VycAdminUsersRoute,
 }
 
 export const routeTree = rootRoute
@@ -266,14 +310,19 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/dashboard",
         "/logout",
         "/theme",
-        "/admin/roles",
-        "/admin/users"
+        "/vyc/home",
+        "/vyc/admin/roles",
+        "/vyc/admin/users"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/dashboard": {
+      "filePath": "dashboard.tsx"
     },
     "/logout": {
       "filePath": "logout.tsx"
@@ -286,12 +335,6 @@ export const routeTree = rootRoute
         "/theme/themes",
         "/theme/typography"
       ]
-    },
-    "/admin/roles": {
-      "filePath": "admin/roles.tsx"
-    },
-    "/admin/users": {
-      "filePath": "admin/users.tsx"
     },
     "/theme/others": {
       "filePath": "theme/others.tsx",
@@ -308,6 +351,15 @@ export const routeTree = rootRoute
     "/theme/typography": {
       "filePath": "theme/typography.tsx",
       "parent": "/theme"
+    },
+    "/vyc/home": {
+      "filePath": "vyc/home.tsx"
+    },
+    "/vyc/admin/roles": {
+      "filePath": "vyc/admin/roles.tsx"
+    },
+    "/vyc/admin/users": {
+      "filePath": "vyc/admin/users.tsx"
     }
   }
 }

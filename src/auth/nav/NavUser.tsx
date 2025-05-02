@@ -91,7 +91,7 @@ export function NavUser({
                 Notifications
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to='/theme/themes'>
+                <Link to='/theme/themes' activeProps={{ className: 'link-active-dropdown' }}>
                   <Palette />
                   Theme
                 </Link>

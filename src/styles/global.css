@@ -78,12 +78,10 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    @apply transition-colors duration-100 ease-in-out;
     @apply tracking-widest;
   }
   body {
     @apply bg-background text-foreground;
-    letter-spacing: var(--tracking-normal);
   }
 }
 
@@ -98,6 +96,19 @@
 
 @layer components {
   .border-style-app {
+    --tw-border-style: var(--border-style);
+    border-style: var(--border-style);
+  }
+  .link-active-collapsible {
+    @apply bg-sidebar-accent text-sidebar-accent-foreground font-bold!;
+    --tw-border-style: var(--border-style);
+    border-style: var(--border-style);
+    > svg {
+      @apply bg-sidebar-accent text-sidebar-accent-foreground font-bold!;
+    }
+  }
+  .link-active-dropdown {
+    @apply bg-accent text-accent-foreground font-bold;
     --tw-border-style: var(--border-style);
     border-style: var(--border-style);
   }
