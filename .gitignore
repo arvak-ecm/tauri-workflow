@@ -13,8 +13,6 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
@@ -26,6 +24,7 @@ dist-ssr
 #tauri compiler
 /src-tauri/target
 /src-tauri/release
+/src-tauri/Cargo.lock
 
 # Env
 .env
