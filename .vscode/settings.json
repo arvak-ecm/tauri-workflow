@@ -1,0 +1,17 @@
+{
+  "rust-analyzer.checkOnSave.enable": false,
+  "rust-analyzer.procMacro.enable": false,
+  "rust-analyzer.cargo.allFeatures": false,
+  "rust-analyzer.cargo.noDefaultFeatures": true,
+  "rust-analyzer.cargo.features": [],
+  "rust-analyzer.cargo.loadOutDirsFromCheck": false,
+  "rust-analyzer.cargo.runBuildScripts": false,
+  "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"],
+  "rust-analyzer.workspace.symbol.search.limit": 128,
+  "rust-analyzer.imports.granularity.group": "crate",
+  "files.watcherExclude": {
+    "**/target/**": true,
+    "**/.cargo/**": true,
+    "**/node_modules/**": true
+  }
+}
