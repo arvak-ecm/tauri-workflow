@@ -26,6 +26,7 @@ dist-ssr
 /src-tauri/target
 /src-tauri/release
 /src-tauri/Cargo.lock
+/src-tauri/binaries/*
 
 # Env
 .env
