@@ -7,6 +7,7 @@ export const getInicialStateStore = (key: string) => {
   return stored !== null ? JSON.parse(stored) : null
 }
 
+export const isRustServerAtom = atomWithStorage('isRustServerAtom', false)
 export const sidebarIsOpenAtom = atomWithStorage('sidebarIsOpenAtom', getInicialStateStore('sidebarIsOpenAtom'))
 export const sidebarSettingsAtom = atomWithStorage('sidebarSettingsAtom', getInicialStateStore('sidebarSettingsAtom'))
 

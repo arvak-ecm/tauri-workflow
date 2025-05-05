@@ -27,7 +27,8 @@
     "core:window:allow-start-dragging",
     "core:webview:allow-set-webview-zoom",
     "core:window:allow-set-background-color",
-    "core:webview:allow-set-webview-background-color"
+    "core:webview:allow-set-webview-background-color",
+    "core:window:allow-destroy"
   ],
   "platforms": ["macOS", "windows"]
 }

@@ -12,9 +12,11 @@ import ContentApp from '@/auth/nav/ContentApp'
 import { useAtomValue } from 'jotai'
 import { sidebarIsOpenAtom, sidebarSettingsAtom } from '@/atom/globals'
 import { SidebarSettings } from '@/types/sidebar'
+import { startServerOracle } from '@/app/renegociated/apis/database'
 
 export const Route = createRootRoute({
   loader: async () => {
+    startServerOracle()
     const mode = await getMode()
 
     return { mode }

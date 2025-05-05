@@ -4,7 +4,7 @@ export const msalConfig: Configuration = {
   auth: {
     clientId: import.meta.env.VITE_ENTRA_CLIENT_ID,
     authority: `https://login.microsoftonline.com/${import.meta.env.VITE_ENTRA_AUTHORITY}`,
-    redirectUri: '/',
+
     postLogoutRedirectUri: '/logout',
     navigateToLoginRequestUrl: false
   },
@@ -25,7 +25,7 @@ export const msalConfig: Configuration = {
             console.error(message)
             return
           case LogLevel.Info:
-            console.info(message)
+            //console.info(message)
             return
           case LogLevel.Verbose:
             console.debug(message)

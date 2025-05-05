@@ -5,7 +5,7 @@ import { useAtomValue } from 'jotai'
 import { SidebarSettings } from '@/types/sidebar'
 import { GalleryVerticalEnd } from 'lucide-react'
 import { AppSwitcher } from './app-switcher'
-import { getMenuApp } from '@/app/renegociate/menu-app'
+import { getMenuApp } from '@/app/renegociated/menu-app'
 import SidebarSingleMenu from '@/components/customizer/SidebarSingleMenu'
 import SideBarGroupCollapsible from '@/components/customizer/SidebarGroupCollapsible'
 
@@ -19,8 +19,6 @@ const menu = [
 function AppSidebar() {
   const sidebarSettings = useAtomValue<SidebarSettings>(sidebarSettingsAtom)
   const menuApp = getMenuApp(menu)
-
-  console.log(menuApp)
 
   return (
     <Sidebar
@@ -40,12 +38,12 @@ function AppSidebar() {
         />
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
+        <SidebarGroup key='menu-app'>
           {menuApp.map(item => {
             if (item.type === 'single') {
-              return <SidebarSingleMenu {...item} />
+              return <SidebarSingleMenu {...item} key={item.id} />
             } else {
-              return <SideBarGroupCollapsible className={'group/' + item.id} menu={item} />
+              return <SideBarGroupCollapsible className={'group/' + item.id} menu={item} key={item.id} />
             }
           })}
         </SidebarGroup>

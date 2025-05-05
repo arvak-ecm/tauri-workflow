@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
-
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
@@ -21,9 +21,10 @@ const buttonVariants = cva(
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
         sm: 'h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5',
-        xs: 'h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5',
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
-        icon: 'size-9'
+        icon: 'size-9',
+        xs: 'h-7 px-3 py-1 has-[>svg]:px-2',
+        rowTable: 'h-7 px-3 py-1 has-[>svg]:px-2'
       }
     },
     defaultVariants: {
@@ -37,15 +38,33 @@ function Button({
   className,
   variant,
   size,
+  tooltip,
   asChild = false,
   ...props
 }: React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    tooltip?: string
   }) {
   const Comp = asChild ? Slot : 'button'
-
-  return <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }))} {...props} />
+  return (
+    <>
+      {tooltip ? (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }))} {...props} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{tooltip}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ) : (
+        <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }))} {...props} />
+      )}
+    </>
+  )
 }
 
 export { Button, buttonVariants }

@@ -13,15 +13,15 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ThemeImport } from './routes/theme'
 import { Route as LogoutImport } from './routes/logout'
-import { Route as DashboardImport } from './routes/dashboard'
 import { Route as IndexImport } from './routes/index'
-import { Route as VycHomeImport } from './routes/vyc/home'
 import { Route as ThemeTypographyImport } from './routes/theme/typography'
 import { Route as ThemeThemesImport } from './routes/theme/themes'
 import { Route as ThemeSidebarImport } from './routes/theme/sidebar'
 import { Route as ThemeOthersImport } from './routes/theme/others'
-import { Route as VycAdminUsersImport } from './routes/vyc/admin/users'
-import { Route as VycAdminRolesImport } from './routes/vyc/admin/roles'
+import { Route as RenegociatedHomeImport } from './routes/renegociated/home'
+import { Route as RenegociatedDashboardImport } from './routes/renegociated/dashboard'
+import { Route as RenegociatedAdminUsersImport } from './routes/renegociated/admin/users'
+import { Route as RenegociatedAdminRolesImport } from './routes/renegociated/admin/roles'
 
 // Create/Update Routes
 
@@ -37,21 +37,9 @@ const LogoutRoute = LogoutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DashboardRoute = DashboardImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const VycHomeRoute = VycHomeImport.update({
-  id: '/vyc/home',
-  path: '/vyc/home',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -79,15 +67,27 @@ const ThemeOthersRoute = ThemeOthersImport.update({
   getParentRoute: () => ThemeRoute,
 } as any)
 
-const VycAdminUsersRoute = VycAdminUsersImport.update({
-  id: '/vyc/admin/users',
-  path: '/vyc/admin/users',
+const RenegociatedHomeRoute = RenegociatedHomeImport.update({
+  id: '/renegociated/home',
+  path: '/renegociated/home',
   getParentRoute: () => rootRoute,
 } as any)
 
-const VycAdminRolesRoute = VycAdminRolesImport.update({
-  id: '/vyc/admin/roles',
-  path: '/vyc/admin/roles',
+const RenegociatedDashboardRoute = RenegociatedDashboardImport.update({
+  id: '/renegociated/dashboard',
+  path: '/renegociated/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RenegociatedAdminUsersRoute = RenegociatedAdminUsersImport.update({
+  id: '/renegociated/admin/users',
+  path: '/renegociated/admin/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RenegociatedAdminRolesRoute = RenegociatedAdminRolesImport.update({
+  id: '/renegociated/admin/roles',
+  path: '/renegociated/admin/roles',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -102,13 +102,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
-      parentRoute: typeof rootRoute
-    }
     '/logout': {
       id: '/logout'
       path: '/logout'
@@ -121,6 +114,20 @@ declare module '@tanstack/react-router' {
       path: '/theme'
       fullPath: '/theme'
       preLoaderRoute: typeof ThemeImport
+      parentRoute: typeof rootRoute
+    }
+    '/renegociated/dashboard': {
+      id: '/renegociated/dashboard'
+      path: '/renegociated/dashboard'
+      fullPath: '/renegociated/dashboard'
+      preLoaderRoute: typeof RenegociatedDashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/renegociated/home': {
+      id: '/renegociated/home'
+      path: '/renegociated/home'
+      fullPath: '/renegociated/home'
+      preLoaderRoute: typeof RenegociatedHomeImport
       parentRoute: typeof rootRoute
     }
     '/theme/others': {
@@ -151,25 +158,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThemeTypographyImport
       parentRoute: typeof ThemeImport
     }
-    '/vyc/home': {
-      id: '/vyc/home'
-      path: '/vyc/home'
-      fullPath: '/vyc/home'
-      preLoaderRoute: typeof VycHomeImport
+    '/renegociated/admin/roles': {
+      id: '/renegociated/admin/roles'
+      path: '/renegociated/admin/roles'
+      fullPath: '/renegociated/admin/roles'
+      preLoaderRoute: typeof RenegociatedAdminRolesImport
       parentRoute: typeof rootRoute
     }
-    '/vyc/admin/roles': {
-      id: '/vyc/admin/roles'
-      path: '/vyc/admin/roles'
-      fullPath: '/vyc/admin/roles'
-      preLoaderRoute: typeof VycAdminRolesImport
-      parentRoute: typeof rootRoute
-    }
-    '/vyc/admin/users': {
-      id: '/vyc/admin/users'
-      path: '/vyc/admin/users'
-      fullPath: '/vyc/admin/users'
-      preLoaderRoute: typeof VycAdminUsersImport
+    '/renegociated/admin/users': {
+      id: '/renegociated/admin/users'
+      path: '/renegociated/admin/users'
+      fullPath: '/renegociated/admin/users'
+      preLoaderRoute: typeof RenegociatedAdminUsersImport
       parentRoute: typeof rootRoute
     }
   }
@@ -195,108 +195,108 @@ const ThemeRouteWithChildren = ThemeRoute._addFileChildren(ThemeRouteChildren)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/renegociated/dashboard': typeof RenegociatedDashboardRoute
+  '/renegociated/home': typeof RenegociatedHomeRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/vyc/home': typeof VycHomeRoute
-  '/vyc/admin/roles': typeof VycAdminRolesRoute
-  '/vyc/admin/users': typeof VycAdminUsersRoute
+  '/renegociated/admin/roles': typeof RenegociatedAdminRolesRoute
+  '/renegociated/admin/users': typeof RenegociatedAdminUsersRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/renegociated/dashboard': typeof RenegociatedDashboardRoute
+  '/renegociated/home': typeof RenegociatedHomeRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/vyc/home': typeof VycHomeRoute
-  '/vyc/admin/roles': typeof VycAdminRolesRoute
-  '/vyc/admin/users': typeof VycAdminUsersRoute
+  '/renegociated/admin/roles': typeof RenegociatedAdminRolesRoute
+  '/renegociated/admin/users': typeof RenegociatedAdminUsersRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/renegociated/dashboard': typeof RenegociatedDashboardRoute
+  '/renegociated/home': typeof RenegociatedHomeRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/vyc/home': typeof VycHomeRoute
-  '/vyc/admin/roles': typeof VycAdminRolesRoute
-  '/vyc/admin/users': typeof VycAdminUsersRoute
+  '/renegociated/admin/roles': typeof RenegociatedAdminRolesRoute
+  '/renegociated/admin/users': typeof RenegociatedAdminUsersRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/dashboard'
     | '/logout'
     | '/theme'
+    | '/renegociated/dashboard'
+    | '/renegociated/home'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/vyc/home'
-    | '/vyc/admin/roles'
-    | '/vyc/admin/users'
+    | '/renegociated/admin/roles'
+    | '/renegociated/admin/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
     | '/logout'
     | '/theme'
+    | '/renegociated/dashboard'
+    | '/renegociated/home'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/vyc/home'
-    | '/vyc/admin/roles'
-    | '/vyc/admin/users'
+    | '/renegociated/admin/roles'
+    | '/renegociated/admin/users'
   id:
     | '__root__'
     | '/'
-    | '/dashboard'
     | '/logout'
     | '/theme'
+    | '/renegociated/dashboard'
+    | '/renegociated/home'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/vyc/home'
-    | '/vyc/admin/roles'
-    | '/vyc/admin/users'
+    | '/renegociated/admin/roles'
+    | '/renegociated/admin/users'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
   LogoutRoute: typeof LogoutRoute
   ThemeRoute: typeof ThemeRouteWithChildren
-  VycHomeRoute: typeof VycHomeRoute
-  VycAdminRolesRoute: typeof VycAdminRolesRoute
-  VycAdminUsersRoute: typeof VycAdminUsersRoute
+  RenegociatedDashboardRoute: typeof RenegociatedDashboardRoute
+  RenegociatedHomeRoute: typeof RenegociatedHomeRoute
+  RenegociatedAdminRolesRoute: typeof RenegociatedAdminRolesRoute
+  RenegociatedAdminUsersRoute: typeof RenegociatedAdminUsersRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
   LogoutRoute: LogoutRoute,
   ThemeRoute: ThemeRouteWithChildren,
-  VycHomeRoute: VycHomeRoute,
-  VycAdminRolesRoute: VycAdminRolesRoute,
-  VycAdminUsersRoute: VycAdminUsersRoute,
+  RenegociatedDashboardRoute: RenegociatedDashboardRoute,
+  RenegociatedHomeRoute: RenegociatedHomeRoute,
+  RenegociatedAdminRolesRoute: RenegociatedAdminRolesRoute,
+  RenegociatedAdminUsersRoute: RenegociatedAdminUsersRoute,
 }
 
 export const routeTree = rootRoute
@@ -310,19 +310,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/dashboard",
         "/logout",
         "/theme",
-        "/vyc/home",
-        "/vyc/admin/roles",
-        "/vyc/admin/users"
+        "/renegociated/dashboard",
+        "/renegociated/home",
+        "/renegociated/admin/roles",
+        "/renegociated/admin/users"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/dashboard": {
-      "filePath": "dashboard.tsx"
     },
     "/logout": {
       "filePath": "logout.tsx"
@@ -335,6 +332,12 @@ export const routeTree = rootRoute
         "/theme/themes",
         "/theme/typography"
       ]
+    },
+    "/renegociated/dashboard": {
+      "filePath": "renegociated/dashboard.tsx"
+    },
+    "/renegociated/home": {
+      "filePath": "renegociated/home.tsx"
     },
     "/theme/others": {
       "filePath": "theme/others.tsx",
@@ -352,14 +355,11 @@ export const routeTree = rootRoute
       "filePath": "theme/typography.tsx",
       "parent": "/theme"
     },
-    "/vyc/home": {
-      "filePath": "vyc/home.tsx"
+    "/renegociated/admin/roles": {
+      "filePath": "renegociated/admin/roles.tsx"
     },
-    "/vyc/admin/roles": {
-      "filePath": "vyc/admin/roles.tsx"
-    },
-    "/vyc/admin/users": {
-      "filePath": "vyc/admin/users.tsx"
+    "/renegociated/admin/users": {
+      "filePath": "renegociated/admin/users.tsx"
     }
   }
 }

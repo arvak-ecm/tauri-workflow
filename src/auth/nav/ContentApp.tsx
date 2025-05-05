@@ -7,6 +7,7 @@ import { useAtomValue } from 'jotai'
 import { SidebarSettings } from '@/types/sidebar'
 import { sidebarSettingsAtom } from '@/atom/globals'
 import usePageInfo from '@/hooks/usePageInfo'
+import LucideIcon from '@/components/customizer/LucideIcon'
 
 function ContentApp() {
   const sidebarSettings = useAtomValue<SidebarSettings>(sidebarSettingsAtom)
@@ -39,7 +40,9 @@ function ContentApp() {
           <ModeToggle />
         </div>
       </nav>
-      <Outlet />
+      <main className='flex-1 overflow-auto p-2'>
+        <Outlet />
+      </main>
     </>
   )
 }
@@ -48,10 +51,10 @@ function Header() {
   const pageInfo = usePageInfo()
   return (
     <div className='text-primary flex flex-row items-center justify-center gap-2'>
-      {pageInfo.icon && <pageInfo.icon className='size-12' />}
+      {pageInfo.icon && <LucideIcon iconName={pageInfo.icon} className='text-primary size-12' />}
       <div className='flex w-full flex-col items-start'>
         <h1 className='text-primary w-full text-xl font-bold'>{pageInfo.title}</h1>
-        <small className='text-xs'>{pageInfo.description}</small>
+        {pageInfo.description && <small className='text-xs'>{pageInfo.description}</small>}
       </div>
     </div>
   )

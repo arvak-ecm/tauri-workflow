@@ -1,0 +1,28 @@
+{
+  "name": "db_oxplus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:mac": "pkg index.js --targets node20-macos-x64 --output dist/db_oxplus",
+    "build:win": "pkg index.js --targets node20-win-x64 --output dist/db_oxplus.exe"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.9.0",
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.4.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "pkg": {
+    "scripts": [
+      "./src/server.js"
+    ],
+    "assets": []
+  }
+}

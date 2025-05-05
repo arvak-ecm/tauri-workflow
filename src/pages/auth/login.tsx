@@ -1,4 +1,5 @@
 import { loginRequest } from '@/auth/msal/authConfig'
+import { startServerRust, stopCurrentServer } from '@/auth/oauth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { useMsal } from '@azure/msal-react'
@@ -6,10 +7,18 @@ import { useMsal } from '@azure/msal-react'
 function LoginPage() {
   const { instance } = useMsal()
 
-  const handleLogin = () => {
-    instance.loginRedirect(loginRequest).catch(e => {
-      console.log(e)
-    })
+  const handleLogin = async () => {
+    await startServerRust(1420)
+    instance
+      .loginRedirect({
+        ...loginRequest,
+        redirectUri: 'http://localhost:1420'
+      })
+      .then(async () => {
+        console.log('Login success')
+        await stopCurrentServer(1420, true)
+        //await startServerTS()
+      })
   }
 
   return (

@@ -12,6 +12,7 @@ export interface MenuSingle {
   type: 'single'
   id: string
   name: string
+  description?: string
   icon: string
   href: string
 }

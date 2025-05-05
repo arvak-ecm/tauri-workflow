@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@renegociated/*": ["./src/app/renegociated/*"]
     },
     "target": "ES2020",
     "useDefineForClassFields": true,

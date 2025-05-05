@@ -25,7 +25,6 @@ function existMenuTitle(menu: MenuGroup, menuTitle: string) {
 
 function SideBarGroupCollapsible({ className, menu }: Props) {
   const pageInfo = usePageInfo()
-  console.log(menu)
   return (
     <>
       {menu.nameGroup && <SidebarGroupLabel>{menu.nameGroup}</SidebarGroupLabel>}

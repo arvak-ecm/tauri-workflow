@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "sql",
+  "local": true,
+  "description": "Capability for the core",
+  "windows": ["main"],
+  "permissions": ["sql:default", "sql:allow-execute", "sql:allow-close", "sql:allow-load", "sql:allow-select"],
+  "platforms": ["macOS", "windows"]
+}

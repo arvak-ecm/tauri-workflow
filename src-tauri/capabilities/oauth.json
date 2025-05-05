@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "oauth",
+  "local": true,
+  "description": "Capability for the core",
+  "windows": ["main"],
+  "permissions": ["oauth:allow-start", "oauth:default", "oauth:allow-cancel"],
+  "platforms": ["macOS", "windows"]
+}

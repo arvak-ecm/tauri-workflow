@@ -3,6 +3,7 @@ import { createRouter as createReactRouter } from '@tanstack/react-router'
 import NotFound from '@/core/components/react-router/not-found'
 import { routeTree } from './routeTree.gen'
 import { DefaultCatchBoundary } from '@/core/components/react-router/default-catch-boundary'
+import { Spinner } from '@/components/customizer/Spinner'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,8 +23,28 @@ export function createRouter() {
       routeTree,
       context: { queryClient: queryClient },
       defaultPreload: 'intent',
+      /*defaultViewTransition: {
+        types: ({ fromLocation, toLocation }) => {
+          let direction = 'none'
+
+          if (fromLocation) {
+            const fromIndex = fromLocation.state.__TSR_index
+            const toIndex = toLocation.state.__TSR_index
+
+            direction = fromIndex > toIndex ? 'right' : 'left'
+          }
+
+          return [`slide-${direction}`]
+        }
+      },*/
+      defaultViewTransition: true,
       defaultErrorComponent: DefaultCatchBoundary,
       defaultNotFoundComponent: () => <NotFound />,
+      defaultPendingComponent: () => (
+        <div className={`p-2 text-2xl`}>
+          <Spinner />
+        </div>
+      ),
       scrollRestoration: true
     })
   )
