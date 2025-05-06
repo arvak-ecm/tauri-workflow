@@ -10,6 +10,7 @@ import { createRouter, queryClient } from '@/router.tsx'
 import { Provider } from 'jotai'
 import { globalStore, HydrateAtoms } from './atom/globals'
 import { initialValues } from './atom/initial-values'
+import { RowData } from '@tanstack/react-table'
 
 const router = createRouter()
 
@@ -19,6 +20,13 @@ export const msalInstance = new PublicClientApplication(msalConfig)
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
+  }
+}
+
+declare module '@tanstack/react-table' {
+  //allows us to define custom properties for our columns
+  interface ColumnMeta<TData extends RowData, TValue> {
+    filterVariant?: 'text' | 'range' | 'select'
   }
 }
 

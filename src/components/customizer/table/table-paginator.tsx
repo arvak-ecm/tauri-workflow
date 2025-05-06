@@ -12,7 +12,7 @@ function Paginator<T>({ table }: PaginatorProps<T>) {
   const pages = Array.from({ length: table.getPageCount() }, (_, i) => i)
   const currentPage = table.getState().pagination.pageIndex
   return (
-    <Pagination>
+    <Pagination className='mt-2'>
       <PaginationContent className='ml-auto'>
         <PaginationItem>
           <Button variant='ghost' disabled={!table.getCanPreviousPage()} onClick={() => table.firstPage()}>

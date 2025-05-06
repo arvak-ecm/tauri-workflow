@@ -24,7 +24,8 @@ const storeMenu: MenuSingle[] = [
   {
     type: 'single',
     id: 'home',
-    name: 'Home',
+    name: 'Cases',
+    description: 'List of cases',
     icon: 'home',
     href: '/renegociated/home'
   },

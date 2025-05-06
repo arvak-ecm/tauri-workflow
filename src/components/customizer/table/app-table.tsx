@@ -4,6 +4,7 @@ import { isFilterTableAtom } from '@/atom/store-table'
 import {
   flexRender,
   getCoreRowModel,
+  getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -21,9 +22,10 @@ interface TableProps<T> {
   columns: any[]
   queryOptions: UseQueryOptions<T[]>
   children?: React.ReactNode
+  className?: string
 }
 
-function AppTable<T>({ columns, queryOptions, children }: TableProps<T>) {
+function AppTable<T>({ columns, queryOptions, children, className }: TableProps<T>) {
   const { data, isLoading, isError } = useQuery(queryOptions)
   const isFilter = useAtomValue(isFilterTableAtom)
   const [pagination, setPagination] = useState<PaginationState>({
@@ -38,6 +40,7 @@ function AppTable<T>({ columns, queryOptions, children }: TableProps<T>) {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
     onPaginationChange: setPagination,
     state: {
       pagination
@@ -56,13 +59,20 @@ function AppTable<T>({ columns, queryOptions, children }: TableProps<T>) {
   return (
     <>
       {children}
-      <Table className='relative z-1 w-full text-xs'>
+      <Table className={cn('relative z-1 mb-2 w-full text-xs', className)}>
         <HeaderTable table={table} />
-        <TableBody>
+        <TableBody className=''>
           {table.getRowModel().rows.map(row => (
             <TableRow key={row.id} className='group'>
               {row.getVisibleCells().map(cell => (
-                <TableCell id={cell.id} key={cell.id} className={cn(cell.id.includes('action') ? 'p-0' : '')}>
+                <TableCell
+                  id={cell.id}
+                  key={cell.id}
+                  className={cn(
+                    cell.id.includes('action') ? 'p-0' : '',
+                    cell.column.columnDef.size && `w-${cell.column.columnDef.size}`
+                  )}
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}

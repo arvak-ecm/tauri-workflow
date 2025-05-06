@@ -112,6 +112,9 @@
     --tw-border-style: var(--border-style);
     border-style: var(--border-style);
   }
+  .scrollbar-custom {
+    @apply [&::-webkit-scrollbar-thumb]:bg-primary/50 [&::-webkit-scrollbar-track]:bg-primary/10 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:rounded-sm;
+  }
 }
 
 html {

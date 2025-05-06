@@ -30,12 +30,18 @@ function App() {
     <>
       <SettingsProvider mode={mode}>
         <ThemeProvider>
-          <AuthenticatedTemplate>
+          {import.meta.env.VITE_LOGIN_ACTIVATED == 'true' ? (
+            <>
+              <AuthenticatedTemplate>
+                <AppSidebarProvider />
+              </AuthenticatedTemplate>
+              <UnauthenticatedTemplate>
+                <LoginPage />
+              </UnauthenticatedTemplate>
+            </>
+          ) : (
             <AppSidebarProvider />
-          </AuthenticatedTemplate>
-          <UnauthenticatedTemplate>
-            <LoginPage />
-          </UnauthenticatedTemplate>
+          )}
         </ThemeProvider>
       </SettingsProvider>
     </>
@@ -46,9 +52,9 @@ function AppSidebarProvider() {
   const sidebarSettings = useAtomValue<SidebarSettings>(sidebarSettingsAtom)
   const isOpen = useAtomValue<boolean>(sidebarIsOpenAtom)
   return (
-    <SidebarProvider defaultOpen={isOpen}>
+    <SidebarProvider defaultOpen={isOpen} className='overflow-hidden'>
       {sidebarSettings.position === SidebarPositionsEnum.Left && <AppSidebar />}
-      <SidebarInset>
+      <SidebarInset className='overflow-hidden'>
         <ContentApp />
       </SidebarInset>
       {sidebarSettings.position === SidebarPositionsEnum.Right && <AppSidebar />}

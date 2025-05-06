@@ -40,7 +40,7 @@ function ContentApp() {
           <ModeToggle />
         </div>
       </nav>
-      <main className='flex-1 overflow-auto p-2'>
+      <main className='flex-1 overflow-hidden p-2'>
         <Outlet />
       </main>
     </>
