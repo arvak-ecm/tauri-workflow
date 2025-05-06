@@ -11,7 +11,9 @@ const columnHelper = createColumnHelper<CasesResumeType>()
 const columns = [
   columnHelper.accessor('id', {
     header: 'Id',
-    size: 20,
+    size: 50,
+    maxSize: 50,
+    minSize: 50,
     cell: info => (
       <Link to='/' className='hover:text-primary'>
         {info.getValue()}
@@ -21,19 +23,84 @@ const columns = [
   }),
   columnHelper.accessor('dni', {
     header: 'Rut',
-    size: 10,
+    size: 100,
+    maxSize: 100,
+    minSize: 100,
     cell: info => info.getValue(),
     enableColumnFilter: true
   }),
   columnHelper.accessor('nameCustomer', {
     header: 'Nombre Cliente',
-    size: 0,
+    size: 150,
+    maxSize: 150,
+    minSize: 150,
     cell: info => info.getValue(),
     enableColumnFilter: true
   }),
   columnHelper.accessor('flowName', {
     header: 'Producto',
-    size: 15,
+    size: 99999,
+    cell: info => info.getValue(),
+    enableColumnFilter: true,
+    enableSorting: true,
+    meta: {
+      filterVariant: 'select'
+    }
+  }),
+  columnHelper.accessor('created', {
+    header: 'Responsable',
+    size: 150,
+    cell: info => info.getValue(),
+    enableColumnFilter: true,
+    enableSorting: true,
+    meta: {
+      filterVariant: 'select'
+    }
+  }),
+  columnHelper.accessor('office', {
+    header: 'Sucursal',
+    size: 96,
+    cell: info => info.getValue(),
+    enableColumnFilter: true,
+    enableSorting: true,
+    meta: {
+      align: 'center',
+      filterVariant: 'select'
+    }
+  }),
+  columnHelper.accessor('createdAt', {
+    header: 'Creado',
+    size: 150,
+    cell: info => info.getValue(),
+    enableColumnFilter: true,
+    enableSorting: true,
+    meta: {
+      filterVariant: 'select'
+    }
+  }),
+  columnHelper.accessor('stage', {
+    header: 'Etapa',
+    size: 150,
+    cell: info => info.getValue(),
+    enableColumnFilter: true,
+    enableSorting: true,
+    meta: {
+      filterVariant: 'select'
+    }
+  }),
+  columnHelper.accessor('status', {
+    header: 'Estado',
+    size: 150,
+    cell: info => info.getValue(),
+    enableColumnFilter: true,
+    enableSorting: true,
+    meta: {
+      filterVariant: 'select'
+    }
+  }),
+  columnHelper.accessor('amount', {
+    header: 'Monto',
+    size: 150,
     cell: info => info.getValue(),
     enableColumnFilter: true,
     enableSorting: true,
@@ -48,7 +115,7 @@ function HomePage() {
     <div className='flex w-full flex-1 flex-col gap-4'>
       <HeroPage />
       <div className='relative'>
-        <AppTable columns={columns} queryOptions={getCasesResumeQuery()} className='min-w-[900px]'>
+        <AppTable columns={columns} queryOptions={getCasesResumeQuery()} className='w-full'>
           <TableOptions className='absolute -top-13 right-1 z-2' />
         </AppTable>
       </div>

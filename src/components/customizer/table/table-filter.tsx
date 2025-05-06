@@ -7,9 +7,9 @@ import { useAtomValue } from 'jotai'
 import { motion } from 'motion/react'
 import { useMemo } from 'react'
 const Style = {
-  input: 'text-xs font-sans w-full h-7',
-  inputNumber: 'font-sans w-10 p-1 h-7',
-  select: 'font-sans text-xs w-full !h-7'
+  input: 'text-xs font-sans w-full h-7 md:text-xs',
+  inputNumber: 'font-sans w-10 p-1 h-7 md:text-xs',
+  select: 'font-sans text-xs w-full !h-7 md:text-xs'
 }
 
 function TableFilter({ column, table }: { column: Column<any, any>; table: Table<any> }) {
@@ -56,7 +56,7 @@ function TableFilter({ column, table }: { column: Column<any, any>; table: Table
           </SelectTrigger>
           <SelectContent>
             {sortedUniqueValues.map(value => (
-              <SelectItem key={value} value={value}>
+              <SelectItem key={value} value={value} className='text-xs'>
                 {value}
               </SelectItem>
             ))}

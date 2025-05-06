@@ -12,7 +12,7 @@ function Paginator<T>({ table }: PaginatorProps<T>) {
   const pages = Array.from({ length: table.getPageCount() }, (_, i) => i)
   const currentPage = table.getState().pagination.pageIndex
   return (
-    <Pagination className='mt-2'>
+    <Pagination className='mt-2 !text-xs'>
       <PaginationContent className='ml-auto'>
         <PaginationItem>
           <Button variant='ghost' disabled={!table.getCanPreviousPage()} onClick={() => table.firstPage()}>
@@ -26,13 +26,13 @@ function Paginator<T>({ table }: PaginatorProps<T>) {
         </PaginationItem>
         <PaginationItem>
           <Select value={currentPage.toString()} onValueChange={value => table.setPageIndex(Number(value))}>
-            <SelectTrigger className='h-8 w-40'>
-              <SelectValue placeholder='Select a fruit' />
+            <SelectTrigger className='h-8 w-40 text-xs' size='sm'>
+              <SelectValue placeholder='' />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 {pages.map(page => (
-                  <SelectItem key={page} value={page.toString()}>
+                  <SelectItem key={page} value={page.toString()} className='text-xs'>
                     page {page + 1}
                   </SelectItem>
                 ))}

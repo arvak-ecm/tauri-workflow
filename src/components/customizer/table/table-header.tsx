@@ -16,11 +16,13 @@ function HeaderTable<T>({ table }: HeaderProps<T>) {
             <TableHead
               key={header.id}
               colSpan={header.colSpan}
-              style={{ width: `${header.getSize()}px !important` }}
               className={cn('relative p-1', header.column.getCanSort() ? 'cursor-pointer select-none' : '')}
               onClick={header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined}
+              style={{
+                textAlign: header.column.columnDef.meta?.align ?? 'left'
+              }}
             >
-              <div style={{ width: `${header.getSize()}px` }} className='flex flex-row items-center gap-1'>
+              <div className='flex w-full flex-row items-center gap-1'>
                 <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
                 {header.column.getCanSort() && (
                   <span className='min-w-5'>

@@ -59,19 +59,20 @@ function AppTable<T>({ columns, queryOptions, children, className }: TableProps<
   return (
     <>
       {children}
-      <Table className={cn('relative z-1 mb-2 w-full text-xs', className)}>
+      <Table className={cn('relative z-1 mb-2 w-auto text-xs', className)}>
         <HeaderTable table={table} />
-        <TableBody className=''>
+        <TableBody className='w-auto'>
           {table.getRowModel().rows.map(row => (
             <TableRow key={row.id} className='group'>
               {row.getVisibleCells().map(cell => (
                 <TableCell
                   id={cell.id}
                   key={cell.id}
-                  className={cn(
-                    cell.id.includes('action') ? 'p-0' : '',
-                    cell.column.columnDef.size && `w-${cell.column.columnDef.size}`
-                  )}
+                  className={cn(cell.id.includes('action') ? 'p-0' : '')}
+                  style={{
+                    width: cell.column.getSize() == 99999 ? 'auto' : `${cell.column.getSize()}px`,
+                    textAlign: cell.column.columnDef.meta?.align ?? 'left'
+                  }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
