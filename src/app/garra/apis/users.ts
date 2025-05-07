@@ -1,5 +1,5 @@
+import { UserType } from '@/app/garra/types/user'
 import { queryOptions, UseQueryOptions } from '@tanstack/react-query'
-import { UserType } from '@renegociated/types/user'
 
 export const getUsersQuery = () =>
   queryOptions({

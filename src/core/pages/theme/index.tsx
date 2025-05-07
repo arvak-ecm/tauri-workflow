@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Button } from '@shadcn/button'
+import { Tabs, TabsList, TabsTrigger } from '@shadcn/tabs'
 import { useSettings } from '@/core/hooks/useSettings'
 import { Link, Outlet, useRouter } from '@tanstack/react-router'
 import { RotateCcw } from 'lucide-react'

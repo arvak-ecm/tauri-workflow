@@ -6,6 +6,9 @@ interface Props {
   iconName: string
 }
 
-export default function LucideIcon({ iconName, className }: Props) {
-  return <DynamicIcon name={iconName as IconName} className={cn('text-muted size-6', className)} />
-}
+const LucideIcon: React.FC<Props> = ({ iconName, className }) => (
+  <DynamicIcon name={iconName as IconName} className={cn('text-muted size-6', className)} />
+)
+
+LucideIcon.displayName = 'LucideIcon'
+export default LucideIcon

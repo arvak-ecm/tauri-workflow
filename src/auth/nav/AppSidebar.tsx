@@ -1,17 +1,17 @@
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from '@/components/ui/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from '@shadcn/sidebar'
 import { NavUser } from './NavUser'
 import { sidebarSettingsAtom } from '@/atom/globals'
 import { useAtomValue } from 'jotai'
 import { SidebarSettings } from '@/types/sidebar'
 import { GalleryVerticalEnd } from 'lucide-react'
 import { AppSwitcher } from './app-switcher'
-import { getMenuApp } from '@/app/renegociated/menu-app'
+import { getMenuApp } from '@/app/garra/menu-app'
 import SidebarSingleMenu from '@/components/customizer/SidebarSingleMenu'
 import SideBarGroupCollapsible from '@/components/customizer/SidebarGroupCollapsible'
 
 const menu = [
   { id: 'home' },
-  { id: 'new-case', children: ['new-grc', 'new-comercials'] },
+  { id: 'new-case', children: ['new-case'] },
   { id: 'dashboard' },
   { id: 'admin', children: ['admin-users', 'admin-roles'] }
 ]
@@ -41,7 +41,7 @@ function AppSidebar() {
         <SidebarGroup key='menu-app'>
           {menuApp.map(item => {
             if (item.type === 'single') {
-              return <SidebarSingleMenu {...item} key={item.id} />
+              return <SidebarSingleMenu menu={item} key={item.id} />
             } else {
               return <SideBarGroupCollapsible className={'group/' + item.id} menu={item} key={item.id} />
             }

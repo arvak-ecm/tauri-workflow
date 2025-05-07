@@ -1,6 +1,6 @@
 import { isFilterTableAtom } from '@/atom/store-table'
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Input } from '@shadcn/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@shadcn/select'
 import { cn } from '@/lib/utils'
 import { Column, Table } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'

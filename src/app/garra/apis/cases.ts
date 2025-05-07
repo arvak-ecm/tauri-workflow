@@ -1,5 +1,5 @@
+import { CasesResumeType } from '@/app/garra/types/cases'
 import { formatDNI, generateRandomDNI } from '@/functions/dni'
-import { CasesResumeType } from '@renegociated/types/cases'
 import { queryOptions, UseQueryOptions } from '@tanstack/react-query'
 import { random } from 'lodash'
 

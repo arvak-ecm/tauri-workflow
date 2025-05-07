@@ -1,8 +1,8 @@
-import { Pagination, PaginationContent, PaginationItem } from '@/components/ui/pagination'
-import { Button } from '@/components/ui/button'
+import { Pagination, PaginationContent, PaginationItem } from '@shadcn/pagination'
+import { Button } from '@shadcn/button'
 import { ChevronFirst, ChevronLast, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Table } from '@tanstack/react-table'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@shadcn/select'
 
 interface PaginatorProps<T> {
   table: Table<T>

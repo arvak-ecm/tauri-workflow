@@ -1,8 +1,8 @@
 // React Imports
 import { useEffect, useState } from 'react'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Slider } from '@/components/ui/slider'
+import { Label } from '@shadcn/label'
+import { Input } from '@shadcn/input'
+import { Slider } from '@shadcn/slider'
 import { StyleDefault } from '@/styles/custom.style'
 import { cn } from '@/lib/utils'
 
@@ -16,8 +16,15 @@ type SliderWithInputProps = {
   unit?: string
 }
 
-const SliderWithInput = ({ value, onChange, min, max, step = 1, label, unit = 'px' }: SliderWithInputProps) => {
-  // States
+const SliderWithInput: React.FC<SliderWithInputProps> = ({
+  value,
+  onChange,
+  min,
+  max,
+  step = 1,
+  label,
+  unit = 'px'
+}) => {
   const [localValue, setLocalValue] = useState(value)
 
   useEffect(() => {
@@ -68,4 +75,5 @@ const SliderWithInput = ({ value, onChange, min, max, step = 1, label, unit = 'p
   )
 }
 
+SliderWithInput.displayName = 'SliderWithInput'
 export default SliderWithInput

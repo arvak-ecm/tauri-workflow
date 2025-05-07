@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { flexRender, Table } from '@tanstack/react-table'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import { TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { TableHead, TableHeader, TableRow } from '@shadcn/table'
 import TableFilter from './table-filter'
 
 interface HeaderProps<T> {

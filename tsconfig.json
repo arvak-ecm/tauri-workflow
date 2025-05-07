@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@renegociated/*": ["./src/app/renegociated/*"]
+      "@components/*": ["./src/components/*"],
+      "@shadcn/*": ["./src/components/ui/*"]
     },
     "target": "ES2020",
     "useDefineForClassFields": true,

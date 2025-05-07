@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Switch } from '@/components/ui/switch'
+import { Switch } from '@shadcn/switch'
 import { cn } from '@/lib/utils'
 import { StyleDefault } from '@/styles/custom.style'
 
@@ -14,7 +14,7 @@ export type SwitchGroupProps = {
   onChange?: (selectedId: string | null) => void
 }
 
-export function SwitchGroup({ switches, onChange, activeItem }: SwitchGroupProps) {
+const SwitchGroup: React.FC<SwitchGroupProps> = ({ switches, onChange, activeItem }) => {
   const [active, setActive] = useState<string>(activeItem || switches[0]?.id || '')
 
   const handleChange = (id: string) => {
@@ -43,3 +43,6 @@ export function SwitchGroup({ switches, onChange, activeItem }: SwitchGroupProps
     </div>
   )
 }
+
+SwitchGroup.displayName = 'SwitchGroup'
+export default SwitchGroup

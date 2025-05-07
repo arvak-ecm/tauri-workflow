@@ -1,5 +1,4 @@
-import { SwitchGroup } from '@/components/customizer/SwitchGroup'
-import { Badge } from '@/components/ui/badge'
+import { Badge } from '@shadcn/badge'
 import { SidebarCollapsibleEnum, SidebarPositionsEnum, SidebarVariantsEnum } from '@/data/Sidebar'
 import { capitalize } from '@/functions/global'
 import { Style } from './style'
@@ -7,6 +6,7 @@ import { SidebarSettings } from '@/types/sidebar'
 import PanelCustom from '@/components/customizer/panelCustom'
 import { useAtom } from 'jotai'
 import { sidebarSettingsAtom } from '@/atom/globals'
+import SwitchGroup from '@/components/customizer/SwitchGroup'
 
 const variantOptions = [
   { id: SidebarVariantsEnum.Sidebar, label: capitalize(SidebarVariantsEnum.Sidebar) },

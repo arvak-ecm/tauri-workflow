@@ -1,14 +1,14 @@
 import { cn } from '@/lib/utils'
 import { StyleDefault } from '@/styles/custom.style'
-import { Label } from '../ui/label'
+import { Label } from '@shadcn/label'
 
-interface PanelCustomProps {
+interface Props {
   children: React.ReactNode
   title?: string
   className?: string
 }
 
-export function PanelCustom({ children, title, className }: PanelCustomProps) {
+const PanelCustom: React.FC<Props> = ({ children, title, className }) => {
   return (
     <section
       className={cn(
@@ -22,4 +22,5 @@ export function PanelCustom({ children, title, className }: PanelCustomProps) {
   )
 }
 
+PanelCustom.displayName = 'PanelCustom'
 export default PanelCustom

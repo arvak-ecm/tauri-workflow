@@ -1,6 +1,6 @@
-import { createRootRoute } from '@tanstack/react-router'
+import { createRootRouteWithContext } from '@tanstack/react-router'
 import '@/styles/global.css'
-import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar'
+
 import { ThemeProvider } from '@/core/providers/ThemesProvider'
 import { SettingsProvider } from '@/core/contexts/settingsContext'
 import { getMode } from '@/core/utils/getMode'
@@ -12,13 +12,13 @@ import ContentApp from '@/auth/nav/ContentApp'
 import { useAtomValue } from 'jotai'
 import { sidebarIsOpenAtom, sidebarSettingsAtom } from '@/atom/globals'
 import { SidebarSettings } from '@/types/sidebar'
-import { startServerOracle } from '@/app/renegociated/apis/database'
-
-export const Route = createRootRoute({
+import { QueryClient } from '@tanstack/react-query'
+import { SidebarInset, SidebarProvider } from '@shadcn/sidebar'
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient
+}>()({
   loader: async () => {
-    startServerOracle()
     const mode = await getMode()
-
     return { mode }
   },
   component: App
@@ -30,7 +30,7 @@ function App() {
     <>
       <SettingsProvider mode={mode}>
         <ThemeProvider>
-          {import.meta.env.VITE_LOGIN_ACTIVATED == 'true' ? (
+          {import.meta.env.VITE_LOGIN_ACTIVATED == true ? (
             <>
               <AuthenticatedTemplate>
                 <AppSidebarProvider />

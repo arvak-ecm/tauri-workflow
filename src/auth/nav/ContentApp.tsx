@@ -1,4 +1,4 @@
-import { SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarTrigger } from '@shadcn/sidebar'
 import ModeToggle from '@/core/components/theme/ModeToggle'
 import { cn } from '@/lib/utils'
 import { SidebarCollapsibleEnum, SidebarPositionsEnum } from '@/data/Sidebar'

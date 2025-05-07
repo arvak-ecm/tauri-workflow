@@ -18,10 +18,11 @@ import { Route as ThemeTypographyImport } from './routes/theme/typography'
 import { Route as ThemeThemesImport } from './routes/theme/themes'
 import { Route as ThemeSidebarImport } from './routes/theme/sidebar'
 import { Route as ThemeOthersImport } from './routes/theme/others'
-import { Route as RenegociatedHomeImport } from './routes/renegociated/home'
-import { Route as RenegociatedDashboardImport } from './routes/renegociated/dashboard'
-import { Route as RenegociatedAdminUsersImport } from './routes/renegociated/admin/users'
-import { Route as RenegociatedAdminRolesImport } from './routes/renegociated/admin/roles'
+import { Route as GarraHomeImport } from './routes/garra/home'
+import { Route as GarraDashboardImport } from './routes/garra/dashboard'
+import { Route as GarraCaseCaseIdImport } from './routes/garra/case.$caseId'
+import { Route as GarraAdminUsersImport } from './routes/garra/admin/users'
+import { Route as GarraAdminRolesImport } from './routes/garra/admin/roles'
 
 // Create/Update Routes
 
@@ -67,27 +68,33 @@ const ThemeOthersRoute = ThemeOthersImport.update({
   getParentRoute: () => ThemeRoute,
 } as any)
 
-const RenegociatedHomeRoute = RenegociatedHomeImport.update({
-  id: '/renegociated/home',
-  path: '/renegociated/home',
+const GarraHomeRoute = GarraHomeImport.update({
+  id: '/garra/home',
+  path: '/garra/home',
   getParentRoute: () => rootRoute,
 } as any)
 
-const RenegociatedDashboardRoute = RenegociatedDashboardImport.update({
-  id: '/renegociated/dashboard',
-  path: '/renegociated/dashboard',
+const GarraDashboardRoute = GarraDashboardImport.update({
+  id: '/garra/dashboard',
+  path: '/garra/dashboard',
   getParentRoute: () => rootRoute,
 } as any)
 
-const RenegociatedAdminUsersRoute = RenegociatedAdminUsersImport.update({
-  id: '/renegociated/admin/users',
-  path: '/renegociated/admin/users',
+const GarraCaseCaseIdRoute = GarraCaseCaseIdImport.update({
+  id: '/garra/case/$caseId',
+  path: '/garra/case/$caseId',
   getParentRoute: () => rootRoute,
 } as any)
 
-const RenegociatedAdminRolesRoute = RenegociatedAdminRolesImport.update({
-  id: '/renegociated/admin/roles',
-  path: '/renegociated/admin/roles',
+const GarraAdminUsersRoute = GarraAdminUsersImport.update({
+  id: '/garra/admin/users',
+  path: '/garra/admin/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GarraAdminRolesRoute = GarraAdminRolesImport.update({
+  id: '/garra/admin/roles',
+  path: '/garra/admin/roles',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -116,18 +123,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThemeImport
       parentRoute: typeof rootRoute
     }
-    '/renegociated/dashboard': {
-      id: '/renegociated/dashboard'
-      path: '/renegociated/dashboard'
-      fullPath: '/renegociated/dashboard'
-      preLoaderRoute: typeof RenegociatedDashboardImport
+    '/garra/dashboard': {
+      id: '/garra/dashboard'
+      path: '/garra/dashboard'
+      fullPath: '/garra/dashboard'
+      preLoaderRoute: typeof GarraDashboardImport
       parentRoute: typeof rootRoute
     }
-    '/renegociated/home': {
-      id: '/renegociated/home'
-      path: '/renegociated/home'
-      fullPath: '/renegociated/home'
-      preLoaderRoute: typeof RenegociatedHomeImport
+    '/garra/home': {
+      id: '/garra/home'
+      path: '/garra/home'
+      fullPath: '/garra/home'
+      preLoaderRoute: typeof GarraHomeImport
       parentRoute: typeof rootRoute
     }
     '/theme/others': {
@@ -158,18 +165,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThemeTypographyImport
       parentRoute: typeof ThemeImport
     }
-    '/renegociated/admin/roles': {
-      id: '/renegociated/admin/roles'
-      path: '/renegociated/admin/roles'
-      fullPath: '/renegociated/admin/roles'
-      preLoaderRoute: typeof RenegociatedAdminRolesImport
+    '/garra/admin/roles': {
+      id: '/garra/admin/roles'
+      path: '/garra/admin/roles'
+      fullPath: '/garra/admin/roles'
+      preLoaderRoute: typeof GarraAdminRolesImport
       parentRoute: typeof rootRoute
     }
-    '/renegociated/admin/users': {
-      id: '/renegociated/admin/users'
-      path: '/renegociated/admin/users'
-      fullPath: '/renegociated/admin/users'
-      preLoaderRoute: typeof RenegociatedAdminUsersImport
+    '/garra/admin/users': {
+      id: '/garra/admin/users'
+      path: '/garra/admin/users'
+      fullPath: '/garra/admin/users'
+      preLoaderRoute: typeof GarraAdminUsersImport
+      parentRoute: typeof rootRoute
+    }
+    '/garra/case/$caseId': {
+      id: '/garra/case/$caseId'
+      path: '/garra/case/$caseId'
+      fullPath: '/garra/case/$caseId'
+      preLoaderRoute: typeof GarraCaseCaseIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -197,28 +211,30 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
-  '/renegociated/dashboard': typeof RenegociatedDashboardRoute
-  '/renegociated/home': typeof RenegociatedHomeRoute
+  '/garra/dashboard': typeof GarraDashboardRoute
+  '/garra/home': typeof GarraHomeRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/renegociated/admin/roles': typeof RenegociatedAdminRolesRoute
-  '/renegociated/admin/users': typeof RenegociatedAdminUsersRoute
+  '/garra/admin/roles': typeof GarraAdminRolesRoute
+  '/garra/admin/users': typeof GarraAdminUsersRoute
+  '/garra/case/$caseId': typeof GarraCaseCaseIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
-  '/renegociated/dashboard': typeof RenegociatedDashboardRoute
-  '/renegociated/home': typeof RenegociatedHomeRoute
+  '/garra/dashboard': typeof GarraDashboardRoute
+  '/garra/home': typeof GarraHomeRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/renegociated/admin/roles': typeof RenegociatedAdminRolesRoute
-  '/renegociated/admin/users': typeof RenegociatedAdminUsersRoute
+  '/garra/admin/roles': typeof GarraAdminRolesRoute
+  '/garra/admin/users': typeof GarraAdminUsersRoute
+  '/garra/case/$caseId': typeof GarraCaseCaseIdRoute
 }
 
 export interface FileRoutesById {
@@ -226,14 +242,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
-  '/renegociated/dashboard': typeof RenegociatedDashboardRoute
-  '/renegociated/home': typeof RenegociatedHomeRoute
+  '/garra/dashboard': typeof GarraDashboardRoute
+  '/garra/home': typeof GarraHomeRoute
   '/theme/others': typeof ThemeOthersRoute
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/renegociated/admin/roles': typeof RenegociatedAdminRolesRoute
-  '/renegociated/admin/users': typeof RenegociatedAdminUsersRoute
+  '/garra/admin/roles': typeof GarraAdminRolesRoute
+  '/garra/admin/users': typeof GarraAdminUsersRoute
+  '/garra/case/$caseId': typeof GarraCaseCaseIdRoute
 }
 
 export interface FileRouteTypes {
@@ -242,40 +259,43 @@ export interface FileRouteTypes {
     | '/'
     | '/logout'
     | '/theme'
-    | '/renegociated/dashboard'
-    | '/renegociated/home'
+    | '/garra/dashboard'
+    | '/garra/home'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/renegociated/admin/roles'
-    | '/renegociated/admin/users'
+    | '/garra/admin/roles'
+    | '/garra/admin/users'
+    | '/garra/case/$caseId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/logout'
     | '/theme'
-    | '/renegociated/dashboard'
-    | '/renegociated/home'
+    | '/garra/dashboard'
+    | '/garra/home'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/renegociated/admin/roles'
-    | '/renegociated/admin/users'
+    | '/garra/admin/roles'
+    | '/garra/admin/users'
+    | '/garra/case/$caseId'
   id:
     | '__root__'
     | '/'
     | '/logout'
     | '/theme'
-    | '/renegociated/dashboard'
-    | '/renegociated/home'
+    | '/garra/dashboard'
+    | '/garra/home'
     | '/theme/others'
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/renegociated/admin/roles'
-    | '/renegociated/admin/users'
+    | '/garra/admin/roles'
+    | '/garra/admin/users'
+    | '/garra/case/$caseId'
   fileRoutesById: FileRoutesById
 }
 
@@ -283,20 +303,22 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LogoutRoute: typeof LogoutRoute
   ThemeRoute: typeof ThemeRouteWithChildren
-  RenegociatedDashboardRoute: typeof RenegociatedDashboardRoute
-  RenegociatedHomeRoute: typeof RenegociatedHomeRoute
-  RenegociatedAdminRolesRoute: typeof RenegociatedAdminRolesRoute
-  RenegociatedAdminUsersRoute: typeof RenegociatedAdminUsersRoute
+  GarraDashboardRoute: typeof GarraDashboardRoute
+  GarraHomeRoute: typeof GarraHomeRoute
+  GarraAdminRolesRoute: typeof GarraAdminRolesRoute
+  GarraAdminUsersRoute: typeof GarraAdminUsersRoute
+  GarraCaseCaseIdRoute: typeof GarraCaseCaseIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LogoutRoute: LogoutRoute,
   ThemeRoute: ThemeRouteWithChildren,
-  RenegociatedDashboardRoute: RenegociatedDashboardRoute,
-  RenegociatedHomeRoute: RenegociatedHomeRoute,
-  RenegociatedAdminRolesRoute: RenegociatedAdminRolesRoute,
-  RenegociatedAdminUsersRoute: RenegociatedAdminUsersRoute,
+  GarraDashboardRoute: GarraDashboardRoute,
+  GarraHomeRoute: GarraHomeRoute,
+  GarraAdminRolesRoute: GarraAdminRolesRoute,
+  GarraAdminUsersRoute: GarraAdminUsersRoute,
+  GarraCaseCaseIdRoute: GarraCaseCaseIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -312,10 +334,11 @@ export const routeTree = rootRoute
         "/",
         "/logout",
         "/theme",
-        "/renegociated/dashboard",
-        "/renegociated/home",
-        "/renegociated/admin/roles",
-        "/renegociated/admin/users"
+        "/garra/dashboard",
+        "/garra/home",
+        "/garra/admin/roles",
+        "/garra/admin/users",
+        "/garra/case/$caseId"
       ]
     },
     "/": {
@@ -333,11 +356,11 @@ export const routeTree = rootRoute
         "/theme/typography"
       ]
     },
-    "/renegociated/dashboard": {
-      "filePath": "renegociated/dashboard.tsx"
+    "/garra/dashboard": {
+      "filePath": "garra/dashboard.tsx"
     },
-    "/renegociated/home": {
-      "filePath": "renegociated/home.tsx"
+    "/garra/home": {
+      "filePath": "garra/home.tsx"
     },
     "/theme/others": {
       "filePath": "theme/others.tsx",
@@ -355,11 +378,14 @@ export const routeTree = rootRoute
       "filePath": "theme/typography.tsx",
       "parent": "/theme"
     },
-    "/renegociated/admin/roles": {
-      "filePath": "renegociated/admin/roles.tsx"
+    "/garra/admin/roles": {
+      "filePath": "garra/admin/roles.tsx"
     },
-    "/renegociated/admin/users": {
-      "filePath": "renegociated/admin/users.tsx"
+    "/garra/admin/users": {
+      "filePath": "garra/admin/users.tsx"
+    },
+    "/garra/case/$caseId": {
+      "filePath": "garra/case.$caseId.tsx"
     }
   }
 }

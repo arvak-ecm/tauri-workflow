@@ -1,5 +1,5 @@
 import { Edit, Trash2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@shadcn/button'
 import { Row } from '@tanstack/react-table'
 import { cn } from '@/lib/utils'
 import React from 'react'

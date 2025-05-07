@@ -1,12 +1,4 @@
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@shadcn/select'
 import { useSettings } from '@/core/hooks/useSettings'
 import { presets } from '@/core/utils/theme-presets'
 import { useMemo } from 'react'

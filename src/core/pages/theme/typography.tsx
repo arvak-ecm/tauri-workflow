@@ -8,7 +8,7 @@ import PanelCustom from '@/components/customizer/panelCustom'
 import ThemeFontSelect from '@/components/customizer/ThemeFontSelect'
 import { getAppliedThemeFont, sansSerifFonts, serifFonts, monoFonts } from '@/core/utils/theme-fonts'
 import { DEFAULT_FONT_SANS, DEFAULT_FONT_SERIF, DEFAULT_FONT_MONO } from '@/core/config/theme'
-import { Switch } from '@/components/ui/switch'
+import { Switch } from '@shadcn/switch'
 import { useState } from 'react'
 
 function TypographyPage() {

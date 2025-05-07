@@ -31,7 +31,7 @@
         "enable": true,
         "scope": ["**"]
       },
-      "capabilities": ["core", "fs", "store", "shell"],
+      "capabilities": ["core", "fs", "store", "shell", "http"],
       "csp": "default-src 'self' ipc: http://ipc.localhost; img-src 'self' asset: http://asset.localhost",
       "dangerousDisableAssetCspModification": true
     }

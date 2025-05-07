@@ -1,5 +1,5 @@
+import { RoleType } from '@/app/garra/types/roles'
 import { queryOptions, UseQueryOptions } from '@tanstack/react-query'
-import { RoleType } from '@renegociated/types/roles'
 
 export const getRolesQuery = () =>
   queryOptions({

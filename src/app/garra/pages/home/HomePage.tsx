@@ -1,6 +1,6 @@
 import TableOptions from '@/components/customizer/table/table-options'
 import { createColumnHelper } from '@tanstack/react-table'
-import { CasesResumeType } from '@renegociated/types/cases'
+import { CasesResumeType } from '@/app/garra/types/cases'
 import { getCasesResumeQuery } from '../../apis/cases'
 import { Link } from '@tanstack/react-router'
 import AppTable from '@/components/customizer/table/app-table'

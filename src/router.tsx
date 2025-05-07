@@ -11,19 +11,17 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       retry: 1,
-      gcTime: 1000 * 60 * 60,
-      staleTime: Infinity
+      staleTime: 60 * 1000,
+      gcTime: Infinity
     }
   }
 })
 
 export function createRouter() {
-  return createReactRouter(
-    createReactRouter({
-      routeTree,
-      context: { queryClient: queryClient },
-      defaultPreload: 'intent',
-      /*defaultViewTransition: {
+  return createReactRouter({
+    routeTree,
+    context: { queryClient: queryClient },
+    /*defaultViewTransition: {
         types: ({ fromLocation, toLocation }) => {
           let direction = 'none'
 
@@ -37,17 +35,18 @@ export function createRouter() {
           return [`slide-${direction}`]
         }
       },*/
-      defaultViewTransition: true,
-      defaultErrorComponent: DefaultCatchBoundary,
-      defaultNotFoundComponent: () => <NotFound />,
-      defaultPendingComponent: () => (
-        <div className={`p-2 text-2xl`}>
-          <Spinner />
-        </div>
-      ),
-      scrollRestoration: true
-    })
-  )
+    defaultViewTransition: true,
+    defaultErrorComponent: DefaultCatchBoundary,
+    defaultNotFoundComponent: () => <NotFound />,
+    defaultPendingComponent: () => (
+      <div className={`p-2 text-2xl`}>
+        <Spinner />
+      </div>
+    ),
+    defaultPreload: 'intent',
+    defaultPreloadStaleTime: 5000,
+    scrollRestoration: true
+  })
 }
 
 declare module '@tanstack/react-router' {

@@ -1,16 +1,16 @@
 import { Link } from '@tanstack/react-router'
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '../ui/sidebar'
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@shadcn/sidebar'
 import { MenuSingle } from '@/types/sidebar'
-import LucideIcon from './LucideIcon'
+import LucideIcon from '@components/customizer/LucideIcon'
 
-function SidebarSingleMenu(menu: MenuSingle) {
+const SidebarSingleMenu: React.FC<{ menu: MenuSingle }> = ({ menu }) => {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton tooltip={menu.name} asChild>
           <Link to={menu.href} activeProps={{ className: 'link-active-collapsible' }}>
             {menu.icon && <LucideIcon iconName={menu.icon} className='text-sidebar-foreground' />}
-            <span>{menu.name}</span>
+            {menu.name}
           </Link>
         </SidebarMenuButton>
       </SidebarMenuItem>
@@ -18,4 +18,5 @@ function SidebarSingleMenu(menu: MenuSingle) {
   )
 }
 
+SidebarSingleMenu.displayName = 'SidebarSingleMenu'
 export default SidebarSingleMenu

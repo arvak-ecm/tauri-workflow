@@ -1,6 +1,6 @@
 import { loginRequest } from '@/auth/msal/authConfig'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@shadcn/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@shadcn/card'
 import { useMsal } from '@azure/msal-react'
 
 function LoginPage() {

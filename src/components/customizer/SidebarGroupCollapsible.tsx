@@ -1,11 +1,5 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import {
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub
-} from '@/components/ui/sidebar'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@shadcn/collapsible'
+import { SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub } from '@shadcn/sidebar'
 import usePageInfo from '@/hooks/usePageInfo'
 import { MenuGroup, MenuSingle } from '@/types/sidebar'
 import { Link } from '@tanstack/react-router'
@@ -23,7 +17,7 @@ function existMenuTitle(menu: MenuGroup, menuTitle: string) {
   return exist ? '/' + menuTitle : ''
 }
 
-function SideBarGroupCollapsible({ className, menu }: Props) {
+const SideBarGroupCollapsible: React.FC<Props> = ({ className, menu }) => {
   const pageInfo = usePageInfo()
   return (
     <>
@@ -43,7 +37,7 @@ function SideBarGroupCollapsible({ className, menu }: Props) {
                 {menu.subMenu?.map((item: MenuSingle, index) => (
                   <SidebarMenuItem key={index}>
                     <SidebarMenuButton asChild>
-                      <Link className='' to={item.href} activeProps={{ className: 'link-active-collapsible' }}>
+                      <Link to={item.href} activeProps={{ className: 'link-active-collapsible' }}>
                         {item.icon && <LucideIcon iconName={item.icon} className='text-sidebar-foreground' />}
                         {item.name}
                       </Link>
@@ -59,4 +53,5 @@ function SideBarGroupCollapsible({ className, menu }: Props) {
   )
 }
 
+SideBarGroupCollapsible.displayName = 'SideBarGroupCollapsible'
 export default SideBarGroupCollapsible

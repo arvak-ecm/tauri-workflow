@@ -95,6 +95,10 @@
 }
 
 @layer components {
+  input,
+  button {
+    @apply focus:!ring-0 focus:!ring-offset-0;
+  }
   .border-style-app {
     --tw-border-style: var(--border-style);
     border-style: var(--border-style);

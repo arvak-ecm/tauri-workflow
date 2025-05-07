@@ -1,5 +1,5 @@
 import { useAtomValue } from 'jotai'
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableRow } from '@shadcn/table'
 import { isFilterTableAtom } from '@/atom/store-table'
 import {
   flexRender,

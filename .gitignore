@@ -29,4 +29,5 @@ dist-ssr
 /src-tauri/binaries/*
 
 # Env
-.env
+.env.development
+.env.production

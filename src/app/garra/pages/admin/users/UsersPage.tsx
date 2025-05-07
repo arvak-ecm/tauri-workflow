@@ -1,9 +1,15 @@
+import { getUsersQuery } from '@/app/garra/apis/users'
 import AppTable from '@/components/customizer/table/app-table'
 import TableOptions from '@/components/customizer/table/table-options'
 import { createColumnHelper } from '@tanstack/react-table'
-import { RoleType } from '@renegociated/types/roles'
-import { getRolesQuery } from '@/app/renegociated/apis/roles'
-const columnHelper = createColumnHelper<RoleType>()
+import { useEffect } from 'react'
+
+type UserType = {
+  id: string
+  name: string
+}
+
+const columnHelper = createColumnHelper<UserType>()
 
 const columns = [
   columnHelper.accessor('id', {
@@ -16,24 +22,26 @@ const columns = [
     cell: info => info.getValue(),
     enableColumnFilter: true,
     enableSorting: true
-  }),
-  columnHelper.accessor('description', {
-    header: 'Description',
-    cell: info => info.getValue(),
-    enableColumnFilter: true,
-    enableSorting: true
   })
 ]
 
-function RolesPage() {
+function UsersPage() {
+  useEffect(() => {
+    const server = async () => {
+      const result = await fetch('http://localhost:3000/ping')
+      const json = await result.json()
+      console.log(json)
+    }
+    server()
+  }, [])
+
   return (
     <div className='relative'>
-      <h1>List of roles</h1>
-      <AppTable columns={columns} queryOptions={getRolesQuery()}>
+      <h1>List of users</h1>
+      <AppTable columns={columns} queryOptions={getUsersQuery()}>
         <TableOptions className='absolute top-0 right-0 z-2' />
       </AppTable>
     </div>
   )
 }
-
-export default RolesPage
+export default UsersPage

@@ -3,9 +3,9 @@ import { Style } from './style'
 import { updateBothThemes } from '@/core/functions/theme'
 import { ThemeMode } from '@/core/data/ThemeMode'
 import { useSettings } from '@/core/hooks/useSettings'
-import { SwitchGroup } from '@/components/customizer/SwitchGroup'
 import { ThemeSettings } from '@/core/contexts/settingsContext'
 import PanelCustom from '@/components/customizer/panelCustom'
+import SwitchGroup from '@/components/customizer/SwitchGroup'
 
 function OthersPage() {
   const { settings, updateSettings } = useSettings()
