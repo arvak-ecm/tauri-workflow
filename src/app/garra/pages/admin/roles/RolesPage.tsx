@@ -1,5 +1,5 @@
-import AppTable from '@/components/customizer/table/app-table'
-import TableOptions from '@/components/customizer/table/table-options'
+import AppTable from '@/core/components/table/app-table'
+import TableOptions from '@/core/components/table/table-options'
 import { createColumnHelper } from '@tanstack/react-table'
 import { RoleType } from '@/app/garra/types/roles'
 import { getRolesQuery } from '@/app/garra/apis/roles'

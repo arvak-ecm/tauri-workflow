@@ -4,14 +4,14 @@ import '@/styles/global.css'
 import { ThemeProvider } from '@/core/providers/ThemesProvider'
 import { SettingsProvider } from '@/core/contexts/settingsContext'
 import { getMode } from '@/core/utils/getMode'
-import { SidebarPositionsEnum } from '@/data/Sidebar'
+import { SidebarPositionsEnum } from '@/core/data/Sidebar'
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react'
 import LoginPage from '@/pages/auth/login'
 import AppSidebar from '@/auth/nav/AppSidebar'
-import ContentApp from '@/auth/nav/ContentApp'
+import ContentApp from '@/core/components/ContentApp'
 import { useAtomValue } from 'jotai'
-import { sidebarIsOpenAtom, sidebarSettingsAtom } from '@/atom/globals'
-import { SidebarSettings } from '@/types/sidebar'
+import { sidebarIsOpenAtom, sidebarSettingsAtom } from '@/core/atom/sidebar'
+import { SidebarSettings } from '@/core/types/sidebar'
 import { QueryClient } from '@tanstack/react-query'
 import { SidebarInset, SidebarProvider } from '@shadcn/sidebar'
 export const Route = createRootRouteWithContext<{
@@ -30,7 +30,7 @@ function App() {
     <>
       <SettingsProvider mode={mode}>
         <ThemeProvider>
-          {import.meta.env.VITE_LOGIN_ACTIVATED == true ? (
+          {import.meta.env.VITE_LOGIN_ACTIVATED ? (
             <>
               <AuthenticatedTemplate>
                 <AppSidebarProvider />

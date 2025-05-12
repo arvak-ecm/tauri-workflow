@@ -3,6 +3,7 @@ interface ImportMetaEnv {
   readonly VITE_MODE: 'development' | 'production'
   readonly VITE_APP_TITLE: string
   readonly VITE_ENTRA_CLIENT_ID: string
+  readonly VITE_ENTRA_REDIRECT_URI: string
   readonly VITE_ENTRA_AUTHORITY: string
   readonly VITE_LOGIN_ACTIVATED: boolean
   readonly VITE_DNI_CHL_LENGTH: number

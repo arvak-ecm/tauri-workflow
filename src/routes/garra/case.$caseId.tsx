@@ -8,7 +8,7 @@ import {
   StepperSeparator,
   StepperTitle,
   StepperTrigger
-} from '../../components/ui/stepper'
+} from '@shadcn/stepper'
 import { Input } from '@shadcn/input'
 import { cn } from '@/lib/utils'
 import { atom, useAtom } from 'jotai'
@@ -52,7 +52,7 @@ function RouteComponent() {
     <div className='flex w-full flex-col p-4'>
       <Stepper value={currentStep} onValueChange={setCurrentStep} orientation='vertical'>
         {steps.map(({ step, title, description, content }) => (
-          <StepperItemFlow step={step} title={title} description={description} content={content} />
+          <StepperItemFlow step={step} title={title} description={description} content={content} key={step} />
         ))}
       </Stepper>
     </div>

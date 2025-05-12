@@ -9,13 +9,13 @@ type ThemeFontSelectProps = {
   disabled?: boolean
 }
 
-const ThemeFontSelect = ({
+const ThemeFontSelect: React.FC<ThemeFontSelectProps> = ({
   fonts,
   defaultValue,
   currentFont,
   onFontChange,
   disabled = false
-}: ThemeFontSelectProps) => {
+}) => {
   // States
   const [value, setValue] = useState(fonts[currentFont ?? defaultValue])
 
@@ -48,4 +48,5 @@ const ThemeFontSelect = ({
   )
 }
 
+ThemeFontSelect.displayName = 'ThemeFontSelect'
 export default ThemeFontSelect

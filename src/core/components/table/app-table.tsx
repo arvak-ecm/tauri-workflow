@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai'
 import { Table, TableBody, TableCell, TableRow } from '@shadcn/table'
-import { isFilterTableAtom } from '@/atom/store-table'
+import { isFilterTableAtom } from '@/core/atom/table'
 import {
   flexRender,
   getCoreRowModel,
@@ -16,7 +16,7 @@ import HeaderTable from './table-header'
 import { cn } from '@/lib/utils'
 import Paginator from './table-paginator'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import Loading from '../loading'
+import Loading from '../../../components/customizer/loading'
 
 interface TableProps<T> {
   columns: any[]

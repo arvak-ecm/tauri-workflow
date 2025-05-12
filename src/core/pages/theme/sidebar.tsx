@@ -1,11 +1,11 @@
 import { Badge } from '@shadcn/badge'
-import { SidebarCollapsibleEnum, SidebarPositionsEnum, SidebarVariantsEnum } from '@/data/Sidebar'
+import { SidebarCollapsibleEnum, SidebarPositionsEnum, SidebarVariantsEnum } from '@/core/data/Sidebar'
 import { capitalize } from '@/functions/global'
 import { Style } from './style'
-import { SidebarSettings } from '@/types/sidebar'
+import { SidebarSettings } from '@/core/types/sidebar'
 import PanelCustom from '@/components/customizer/panelCustom'
 import { useAtom } from 'jotai'
-import { sidebarSettingsAtom } from '@/atom/globals'
+import { sidebarSettingsAtom } from '@/core/atom/sidebar'
 import SwitchGroup from '@/components/customizer/SwitchGroup'
 
 const variantOptions = [

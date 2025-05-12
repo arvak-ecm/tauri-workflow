@@ -2,15 +2,15 @@ import { cn } from '@/lib/utils'
 import LucideIcon from './LucideIcon'
 
 interface Props {
-  dni: string
+  value: string
   onClick: () => void
 }
 
-const ClearButtonInput: React.FC<Props> = ({ dni, onClick }) => (
+const ClearButtonInput: React.FC<Props> = ({ value, onClick }) => (
   <button
     type='button'
-    className={cn('absolute top-[10px] right-1 opacity-0', dni !== '' && 'opacity-100')}
-    title='clear-dni'
+    className={cn('absolute top-[10px] right-1 opacity-0', value !== '' && 'opacity-100')}
+    title='clear-value'
     onClick={onClick}
   >
     <LucideIcon iconName='x' className='text-destructive size-4' />

@@ -1,6 +1,5 @@
 import { BellIcon, LogOutIcon, MoreVerticalIcon, Palette, UserCircleIcon } from 'lucide-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@shadcn/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,20 +12,15 @@ import {
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@shadcn/sidebar'
 import { useMsal } from '@azure/msal-react'
 import { Link } from '@tanstack/react-router'
+import { AvatarDefault } from '@/core/components/AvatarDefault'
+import useAvatar from '@/core/hooks/useAvatar'
+import { cn } from '@/lib/utils'
+import { getInitialsUser } from '@/core/functions/user'
 
-export function NavUser({
-  user
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+const SidebarMenuUser = () => {
+  const { avatar } = useAvatar()
   const { instance, accounts } = useMsal()
   const { isMobile } = useSidebar()
-
-  console.log(accounts)
 
   const handleLogoutRedirect = () => {
     const activeAccount = instance.getAccountByHomeId(accounts[0].homeAccountId)
@@ -53,10 +47,11 @@ export function NavUser({
               size='lg'
               className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
             >
-              <Avatar className='h-8 w-8 rounded-lg grayscale'>
-                <AvatarImage src={user.avatar || 'test'} alt={user.name || 'test'} />
-                <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
-              </Avatar>
+              <AvatarDefault
+                name={avatar.avatar}
+                userName={accounts.length > 0 ? getInitialsUser(accounts[0].name!) : undefined}
+                className={cn('size-8 rounded-lg', avatar.color === 'gray' ? 'grayscale' : '')}
+              />
               <div className='grid flex-1 text-left text-sm leading-tight'>
                 <span className='truncate font-medium'>{accounts.length > 0 ? accounts[0].name : 'test'}</span>
                 <span className='text-muted-foreground truncate text-xs'>
@@ -74,10 +69,11 @@ export function NavUser({
           >
             <DropdownMenuLabel className='p-0 font-normal'>
               <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
-                <Avatar className='h-8 w-8 rounded-lg'>
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
-                </Avatar>
+                <AvatarDefault
+                  name={avatar.avatar}
+                  userName={accounts.length > 0 ? getInitialsUser(accounts[0].name!) : undefined}
+                  className={cn('size-8 rounded-lg', avatar.color === 'gray' ? 'grayscale' : '')}
+                />
                 <div className='grid flex-1 text-left text-sm leading-tight'>
                   <span className='truncate font-medium'>{accounts.length > 0 ? accounts[0].name : 'test'}</span>
                   <span className='text-muted-foreground truncate text-xs'>
@@ -88,9 +84,10 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <UserCircleIcon />
-                Account
+              <DropdownMenuItem asChild>
+                <Link to='/auth/account'>
+                  <UserCircleIcon /> Account
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <BellIcon />
@@ -114,3 +111,6 @@ export function NavUser({
     </SidebarMenu>
   )
 }
+
+SidebarMenuUser.displayName = 'SidebarMenuUser'
+export default SidebarMenuUser

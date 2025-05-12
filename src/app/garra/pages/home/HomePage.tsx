@@ -1,9 +1,9 @@
-import TableOptions from '@/components/customizer/table/table-options'
+import TableOptions from '@/core/components/table/table-options'
 import { createColumnHelper } from '@tanstack/react-table'
 import { CasesResumeType } from '@/app/garra/types/cases'
 import { getCasesResumeQuery } from '../../apis/cases'
 import { Link } from '@tanstack/react-router'
-import AppTable from '@/components/customizer/table/app-table'
+import AppTable from '@/core/components/table/app-table'
 import { cn } from '@/lib/utils'
 import { AnimatedGridPattern } from '@/components/magicui/animated-grid-pattern'
 //id, rut, nombre cliente producto, responsable, sucursal, fecha creacion, etapa, estado, monto operacion

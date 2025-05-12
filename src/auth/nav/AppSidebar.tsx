@@ -1,13 +1,13 @@
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from '@shadcn/sidebar'
-import { NavUser } from './NavUser'
-import { sidebarSettingsAtom } from '@/atom/globals'
+import { sidebarSettingsAtom } from '@/core/atom/sidebar'
 import { useAtomValue } from 'jotai'
-import { SidebarSettings } from '@/types/sidebar'
+import { SidebarSettings } from '@/core/types/sidebar'
 import { GalleryVerticalEnd } from 'lucide-react'
-import { AppSwitcher } from './app-switcher'
 import { getMenuApp } from '@/app/garra/menu-app'
-import SidebarSingleMenu from '@/components/customizer/SidebarSingleMenu'
-import SideBarGroupCollapsible from '@/components/customizer/SidebarGroupCollapsible'
+import SidebarSingleMenu from '@/core/components/sidebar/SidebarSingleMenu'
+import SideBarGroupCollapsible from '@/core/components/sidebar/SidebarGroupCollapsible'
+import AppSwitcher from './app-switcher'
+import SidebarMenuUser from '@/core/components/sidebar/SidebarMenuUser'
 
 const menu = [
   { id: 'home' },
@@ -49,7 +49,7 @@ function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={{ name: 'Cardo', email: 'cardo@gmail.com', avatar: 'https://i.pravatar.cc/150?img=1' }} />
+        <SidebarMenuUser />
       </SidebarFooter>
     </Sidebar>
   )

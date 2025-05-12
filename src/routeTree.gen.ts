@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ThemeImport } from './routes/theme'
 import { Route as LogoutImport } from './routes/logout'
+import { Route as AuthSuccessImport } from './routes/auth-success'
 import { Route as IndexImport } from './routes/index'
 import { Route as ThemeTypographyImport } from './routes/theme/typography'
 import { Route as ThemeThemesImport } from './routes/theme/themes'
@@ -20,6 +21,7 @@ import { Route as ThemeSidebarImport } from './routes/theme/sidebar'
 import { Route as ThemeOthersImport } from './routes/theme/others'
 import { Route as GarraHomeImport } from './routes/garra/home'
 import { Route as GarraDashboardImport } from './routes/garra/dashboard'
+import { Route as AuthAccountImport } from './routes/auth/account'
 import { Route as GarraCaseCaseIdImport } from './routes/garra/case.$caseId'
 import { Route as GarraAdminUsersImport } from './routes/garra/admin/users'
 import { Route as GarraAdminRolesImport } from './routes/garra/admin/roles'
@@ -35,6 +37,12 @@ const ThemeRoute = ThemeImport.update({
 const LogoutRoute = LogoutImport.update({
   id: '/logout',
   path: '/logout',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthSuccessRoute = AuthSuccessImport.update({
+  id: '/auth-success',
+  path: '/auth-success',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -80,6 +88,12 @@ const GarraDashboardRoute = GarraDashboardImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthAccountRoute = AuthAccountImport.update({
+  id: '/auth/account',
+  path: '/auth/account',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const GarraCaseCaseIdRoute = GarraCaseCaseIdImport.update({
   id: '/garra/case/$caseId',
   path: '/garra/case/$caseId',
@@ -109,6 +123,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/auth-success': {
+      id: '/auth-success'
+      path: '/auth-success'
+      fullPath: '/auth-success'
+      preLoaderRoute: typeof AuthSuccessImport
+      parentRoute: typeof rootRoute
+    }
     '/logout': {
       id: '/logout'
       path: '/logout'
@@ -121,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/theme'
       fullPath: '/theme'
       preLoaderRoute: typeof ThemeImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/account': {
+      id: '/auth/account'
+      path: '/auth/account'
+      fullPath: '/auth/account'
+      preLoaderRoute: typeof AuthAccountImport
       parentRoute: typeof rootRoute
     }
     '/garra/dashboard': {
@@ -209,8 +237,10 @@ const ThemeRouteWithChildren = ThemeRoute._addFileChildren(ThemeRouteChildren)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth-success': typeof AuthSuccessRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/auth/account': typeof AuthAccountRoute
   '/garra/dashboard': typeof GarraDashboardRoute
   '/garra/home': typeof GarraHomeRoute
   '/theme/others': typeof ThemeOthersRoute
@@ -224,8 +254,10 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth-success': typeof AuthSuccessRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/auth/account': typeof AuthAccountRoute
   '/garra/dashboard': typeof GarraDashboardRoute
   '/garra/home': typeof GarraHomeRoute
   '/theme/others': typeof ThemeOthersRoute
@@ -240,8 +272,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/auth-success': typeof AuthSuccessRoute
   '/logout': typeof LogoutRoute
   '/theme': typeof ThemeRouteWithChildren
+  '/auth/account': typeof AuthAccountRoute
   '/garra/dashboard': typeof GarraDashboardRoute
   '/garra/home': typeof GarraHomeRoute
   '/theme/others': typeof ThemeOthersRoute
@@ -257,8 +291,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth-success'
     | '/logout'
     | '/theme'
+    | '/auth/account'
     | '/garra/dashboard'
     | '/garra/home'
     | '/theme/others'
@@ -271,8 +307,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth-success'
     | '/logout'
     | '/theme'
+    | '/auth/account'
     | '/garra/dashboard'
     | '/garra/home'
     | '/theme/others'
@@ -285,8 +323,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/auth-success'
     | '/logout'
     | '/theme'
+    | '/auth/account'
     | '/garra/dashboard'
     | '/garra/home'
     | '/theme/others'
@@ -301,8 +341,10 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthSuccessRoute: typeof AuthSuccessRoute
   LogoutRoute: typeof LogoutRoute
   ThemeRoute: typeof ThemeRouteWithChildren
+  AuthAccountRoute: typeof AuthAccountRoute
   GarraDashboardRoute: typeof GarraDashboardRoute
   GarraHomeRoute: typeof GarraHomeRoute
   GarraAdminRolesRoute: typeof GarraAdminRolesRoute
@@ -312,8 +354,10 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthSuccessRoute: AuthSuccessRoute,
   LogoutRoute: LogoutRoute,
   ThemeRoute: ThemeRouteWithChildren,
+  AuthAccountRoute: AuthAccountRoute,
   GarraDashboardRoute: GarraDashboardRoute,
   GarraHomeRoute: GarraHomeRoute,
   GarraAdminRolesRoute: GarraAdminRolesRoute,
@@ -332,8 +376,10 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/auth-success",
         "/logout",
         "/theme",
+        "/auth/account",
         "/garra/dashboard",
         "/garra/home",
         "/garra/admin/roles",
@@ -343,6 +389,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/auth-success": {
+      "filePath": "auth-success.tsx"
     },
     "/logout": {
       "filePath": "logout.tsx"
@@ -355,6 +404,9 @@ export const routeTree = rootRoute
         "/theme/themes",
         "/theme/typography"
       ]
+    },
+    "/auth/account": {
+      "filePath": "auth/account.tsx"
     },
     "/garra/dashboard": {
       "filePath": "garra/dashboard.tsx"

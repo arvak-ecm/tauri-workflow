@@ -11,7 +11,7 @@ import {
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@shadcn/sidebar'
 import { useState } from 'react'
 
-interface AppSwitcherProps {
+interface Props {
   apps: {
     name: string
     logo: React.ElementType
@@ -19,7 +19,7 @@ interface AppSwitcherProps {
   }[]
 }
 
-export function AppSwitcher({ apps }: AppSwitcherProps) {
+const AppSwitcher: React.FC<Props> = ({ apps }) => {
   const [activeTeam] = useState(apps[0])
   if (!activeTeam) {
     return null
@@ -42,7 +42,7 @@ export function AppSwitcher({ apps }: AppSwitcherProps) {
   )
 }
 
-function MultipleAppsSwitcher({ apps }: AppSwitcherProps) {
+const MultipleAppsSwitcher: React.FC<Props> = ({ apps }) => {
   const { isMobile } = useSidebar()
   const [activeTeam, setActiveTeam] = useState(apps[0])
   if (!activeTeam) {
@@ -96,3 +96,5 @@ function MultipleAppsSwitcher({ apps }: AppSwitcherProps) {
     </SidebarMenu>
   )
 }
+AppSwitcher.displayName = 'AppSwitcher'
+export default AppSwitcher

@@ -1,9 +1,34 @@
 use tauri::Manager;
 use tauri::{command, Emitter, Window};
+use tauri_plugin_oauth::start;
+use tauri_plugin_oauth::{OauthConfig, start_with_config};
 
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
+}
+
+#[command]
+async fn start_server(window: Window) -> Result<u16, String> {
+    start(move |url| {
+				print!("URL: {:?}", url);
+        let _ = window.emit("redirect_uri", url);
+    })
+        .map_err(|err| err.to_string())
+}
+
+#[command]
+async fn start_server_with_config(window: Window) -> Result<u16, String> {
+		let config = OauthConfig {
+    	ports: Some(vec![1430, 1431, 1432]),
+    	response: Some("OAuth process completed. You can close this window.".into()),	
+		};
+
+		start_with_config(config, move |url| {
+				print!("URL: {:?}", url);
+				let _ = window.emit("oauth://index", url);
+		})
+				.map_err(|err| err.to_string())
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -24,7 +49,9 @@ pub fn run() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_store::Builder::default().build())
-        .invoke_handler(tauri::generate_handler![greet])
+				.plugin(tauri_plugin_oauth::init())
+				.plugin(tauri_plugin_deep_link::init())
+        .invoke_handler(tauri::generate_handler![greet, start_server, start_server_with_config])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

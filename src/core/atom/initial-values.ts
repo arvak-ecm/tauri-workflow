@@ -1,12 +1,11 @@
-import {
-  appSettingsThemeAtom,
-  drawerIsOpen,
-  getInicialStateStore,
-  sidebarSettingsAtom,
-  tableExportAtom,
-  tableFilterAtom,
-  typeFormNodes
-} from './globals'
+import { getInicialStateStore } from '@/core/functions/store'
+
+import { sidebarSettingsAtom } from '@/core/atom/sidebar'
+import { appSettingsThemeAtom } from '@/core/atom/theme'
+import { drawerIsOpen } from '@/core/atom/drawer'
+import { typeFormNodes } from '@/core/atom/form'
+import { tableExportAtom, tableFilterAtom } from '@/core/atom/table'
+import { avatarAtom } from '@/core/atom/avatar'
 export const themeInitial = {
   mode: 'light',
   theme: {
@@ -46,10 +45,9 @@ export const themeInitial = {
         'sidebar-accent-foreground': 'oklch(0.21 0.006 285.885)',
         'sidebar-border': 'oklch(0.92 0.004 286.32)',
         'sidebar-ring': 'oklch(0.705 0.015 286.067)',
-        'font-sans': 'Roboto, sans-serif',
-        'font-serif':
-          '"Merriweather", "Playfair Display", "Lora", "Source Serif Pro", "Libre Baskerville", "Space Grotesk", "PT Serif"',
-        'font-mono': 'JetBrains Mono, monospace',
+        'font-sans': 'Open Sans, sans-serif',
+        'font-serif': 'Libre Baskerville, serif',
+        'font-mono': 'Fira Code, monospace',
         'shadow-color': 'hsl(0 0% 0%)',
         'shadow-opacity': '0.1',
         'shadow-blur': '3px',
@@ -101,8 +99,9 @@ export const themeInitial = {
         'shadow-offset-y': '1px',
         'letter-spacing': '0em',
         spacing: '0.25rem',
-        'font-mono': 'JetBrains Mono, monospace',
-        'font-sans': 'Roboto, sans-serif',
+        'font-sans': 'Open Sans, sans-serif',
+        'font-serif': 'Libre Baskerville, serif',
+        'font-mono': 'Fira Code, monospace',
         'border-style': 'solid'
       }
     }
@@ -110,6 +109,7 @@ export const themeInitial = {
 }
 
 export const initialValues = [
+  [avatarAtom, getInicialStateStore('avatarAtom') || { color: 'gray', avatar: 'actor-chaplin' }],
   [
     sidebarSettingsAtom,
     getInicialStateStore('sidebarSettingsAtom') || {

@@ -1,5 +1,5 @@
 import { PageInfo } from '@/core/types/reactRouter'
-import { Menu, MenuGroup, MenuItem, MenuSingle } from '@/types/sidebar'
+import { Menu, MenuGroup, MenuItem, MenuSingle } from '@/core/types/sidebar'
 
 const storeMenuGroup: MenuGroup[] = [
   {

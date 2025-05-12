@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client'
-
 import { RouterProvider } from '@tanstack/react-router'
 import { msalConfig } from './auth/msal/authConfig'
 import { AuthenticationResult, EventMessage, EventType, PublicClientApplication } from '@azure/msal-browser'
@@ -8,8 +7,8 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRouter, queryClient } from '@/router.tsx'
 import { Provider } from 'jotai'
-import { globalStore, HydrateAtoms } from './atom/globals'
-import { initialValues } from './atom/initial-values'
+import { globalStore, HydrateAtoms } from '@/core/atom/store'
+import { initialValues } from '@/core/atom/initial-values'
 import { RowData } from '@tanstack/react-table'
 
 const router = createRouter()

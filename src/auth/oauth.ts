@@ -1,6 +1,8 @@
 import { invoke } from '@tauri-apps/api/core'
 import { start, cancel, onInvalidUrl, onUrl } from '@fabianlars/tauri-plugin-oauth'
 
+const ports = [1430, 1431, 1432]
+
 export async function stopCurrentServer(currentPort: number | null, isRustServer: boolean) {
   if (currentPort !== null) {
     try {
@@ -18,9 +20,12 @@ export async function stopCurrentServer(currentPort: number | null, isRustServer
 }
 
 export async function startServerRust(currentPort: number | null) {
-  await stopCurrentServer(currentPort, false)
+  console.log(currentPort)
+  ports.forEach(async port => {
+    await stopCurrentServer(port, false)
+  })
   try {
-    const port = await invoke<number>('start_server')
+    const port = await invoke<number>('start_server_with_config')
     const isRustServer = true
     console.log(`OAuth server started on port ${port} (Rust)`)
     return {

@@ -4,7 +4,7 @@ import { Input } from '@shadcn/input'
 import { formatDNI, validatedDni } from '@/functions/dni'
 import { cn } from '@/lib/utils'
 import { atom, useAtom } from 'jotai'
-import { ChangeEvent, KeyboardEvent } from 'react'
+import { ChangeEvent, KeyboardEvent, memo, useEffect } from 'react'
 import ClearButtonInput from './ClearButtonInput'
 
 interface PropsInput {
@@ -30,9 +30,14 @@ const DniInput: React.FC<PropsInput> = ({ value, onChange, onKeyPress }) => (
   />
 )
 
+const inputValue = atom({ dni: '', isValid: false })
 const InputDni: React.FC<PropsDni> = ({ value = '' }) => {
-  const inputValue = atom({ dni: value, isValid: false })
+  console.log('InputDni')
   const [{ dni, isValid }, setDniState] = useAtom(inputValue)
+
+  useEffect(() => {
+    setDniState({ dni: value, isValid: false })
+  }, [value])
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && isValid) {
@@ -56,7 +61,7 @@ const InputDni: React.FC<PropsDni> = ({ value = '' }) => {
     <div className='flex w-60 flex-row'>
       <div className='relative flex w-full flex-col'>
         <DniInput value={dni} onChange={handleInputChange} onKeyPress={handleKeyPress} />
-        <ClearButtonInput dni={dni} onClick={handleClearInput} />
+        <ClearButtonInput value={dni} onClick={handleClearInput} />
         <span className={cn('text-destructive px-2 py-1 opacity-0', !isValid && dni !== '' && 'opacity-100')}>
           Error Dni
         </span>
@@ -69,4 +74,4 @@ const InputDni: React.FC<PropsDni> = ({ value = '' }) => {
 }
 
 InputDni.displayName = 'InputDni'
-export default InputDni
+export default memo(InputDni)

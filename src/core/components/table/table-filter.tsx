@@ -1,4 +1,4 @@
-import { isFilterTableAtom } from '@/atom/store-table'
+import { isFilterTableAtom } from '@/core/atom/table'
 import { Input } from '@shadcn/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@shadcn/select'
 import { cn } from '@/lib/utils'
@@ -24,7 +24,6 @@ function TableFilter({ column, table }: { column: Column<any, any>; table: Table
     () => (filterVariant === 'range' ? [] : Array.from(column.getFacetedUniqueValues().keys()).sort().slice(0, 5000)),
     [column.getFacetedUniqueValues(), filterVariant]
   )
-  console.log('sortedUniqueValues', column.getFacetedUniqueValues().keys())
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
