@@ -2,7 +2,6 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } f
 import { sidebarSettingsAtom } from '@/core/atom/sidebar'
 import { useAtomValue } from 'jotai'
 import { SidebarSettings } from '@/core/types/sidebar'
-import { GalleryVerticalEnd } from 'lucide-react'
 import { getMenuApp } from '@/app/garra/menu-app'
 import SidebarSingleMenu from '@/core/components/sidebar/SidebarSingleMenu'
 import SideBarGroupCollapsible from '@/core/components/sidebar/SidebarGroupCollapsible'
@@ -27,15 +26,7 @@ function AppSidebar() {
       collapsible={sidebarSettings.collapsible}
     >
       <SidebarHeader>
-        <AppSwitcher
-          apps={[
-            {
-              name: 'Visación y Curse',
-              logo: GalleryVerticalEnd,
-              description: 'Grc'
-            }
-          ]}
-        />
+        <AppSwitcher />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup key='menu-app'>

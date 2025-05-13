@@ -17,7 +17,7 @@ const AccountPage: React.FC = () => {
         <AvatarDefault
           name={avatar.avatar}
           className={cn('size-60', avatar.color === 'gray' ? 'grayscale' : '')}
-          userName={accounts.length > 0 ? getInitialsUser(accounts[0].name!) : undefined}
+          userName={getInitialsUser(accounts[0].name!)}
         />
         <Popover>
           <PopoverTrigger asChild>

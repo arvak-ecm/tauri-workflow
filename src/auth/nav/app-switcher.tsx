@@ -1,31 +1,37 @@
-import { ChevronsUpDown, Plus } from 'lucide-react'
+import { ChevronsUpDown, GalleryVerticalEnd } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger
 } from '@shadcn/dropdown-menu'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@shadcn/sidebar'
 import { useState } from 'react'
 
-interface Props {
-  apps: {
-    name: string
-    logo: React.ElementType
-    description: string
-  }[]
-}
+const apps = [
+  {
+    id: 'garra',
+    name: 'Visación y Curse',
+    logo: GalleryVerticalEnd,
+    description: 'Grc'
+  },
+  {
+    id: 'docubuilder',
+    name: 'Docu Builder',
+    logo: GalleryVerticalEnd,
+    description: 'Generate document templates'
+  }
+]
 
-const AppSwitcher: React.FC<Props> = ({ apps }) => {
+const AppSwitcher = () => {
   const [activeTeam] = useState(apps[0])
   if (!activeTeam) {
     return null
   }
   if (apps.length > 1) {
-    return <MultipleAppsSwitcher apps={apps} />
+    return <MultipleAppsSwitcher />
   }
   return (
     <SidebarMenu>
@@ -42,7 +48,7 @@ const AppSwitcher: React.FC<Props> = ({ apps }) => {
   )
 }
 
-const MultipleAppsSwitcher: React.FC<Props> = ({ apps }) => {
+const MultipleAppsSwitcher = () => {
   const { isMobile } = useSidebar()
   const [activeTeam, setActiveTeam] = useState(apps[0])
   if (!activeTeam) {
@@ -73,7 +79,7 @@ const MultipleAppsSwitcher: React.FC<Props> = ({ apps }) => {
             side={isMobile ? 'bottom' : 'right'}
             sideOffset={4}
           >
-            <DropdownMenuLabel className='text-muted-foreground text-xs'>Teams</DropdownMenuLabel>
+            <DropdownMenuLabel className='text-muted-foreground text-xs'>Apps</DropdownMenuLabel>
             {apps.map((app, index) => (
               <DropdownMenuItem key={app.name} onClick={() => setActiveTeam(app)} className='gap-2 p-2'>
                 <div className='flex size-6 items-center justify-center rounded-sm border'>
@@ -83,13 +89,6 @@ const MultipleAppsSwitcher: React.FC<Props> = ({ apps }) => {
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className='gap-2 p-2'>
-              <div className='bg-background flex size-6 items-center justify-center rounded-md border'>
-                <Plus className='size-4' />
-              </div>
-              <div className='text-muted-foreground font-medium'>Add team</div>
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
