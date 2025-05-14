@@ -1,5 +1,5 @@
 import ThemePage from '@/core/pages/theme'
-import { PageInfo } from '@/core/types/reactRouter'
+import { PageInfo } from '@/core/types/reactRouter.type'
 import { createFileRoute } from '@tanstack/react-router'
 
 const pageInfo: PageInfo = {

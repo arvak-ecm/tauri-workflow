@@ -1,11 +1,11 @@
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from '@shadcn/sidebar'
-import { sidebarSettingsAtom } from '@/core/atom/sidebar'
+import { sidebarSettingsAtom } from '@/core/atom/sidebar.store'
 import { useAtomValue } from 'jotai'
-import { SidebarSettings } from '@/core/types/sidebar'
+import { SidebarSettings } from '@/core/types/sidebar.type'
 import { getMenuApp } from '@/app/garra/menu-app'
 import SidebarSingleMenu from '@/core/components/sidebar/SidebarSingleMenu'
 import SideBarGroupCollapsible from '@/core/components/sidebar/SidebarGroupCollapsible'
-import AppSwitcher from './app-switcher'
+import AppSwitcher from '@/core/components/app-switcher'
 import SidebarMenuUser from '@/core/components/sidebar/SidebarMenuUser'
 
 const menu = [

@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@shadcn/sidebar'
-import { MenuSingle } from '@/core/types/sidebar'
+import { MenuSingle } from '@/core/types/sidebar.type'
 import LucideIcon from '@components/customizer/LucideIcon'
 
 const SidebarSingleMenu: React.FC<{ menu: MenuSingle }> = ({ menu }) => {

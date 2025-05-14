@@ -2,7 +2,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { useSettings } from '@/core/hooks/useSettings'
 import { presets } from '@/core/utils/theme-presets'
 import { useMemo } from 'react'
-import { ThemeStyleProps } from '@/core/types/theme'
+import { ThemeStyleProps } from '@/core/types/theme.type'
 import { defaultThemeState } from '@/core/config/theme'
 import { Style } from '@/core/pages/theme/style'
 import PanelCustom from '@/components/customizer/panelCustom'

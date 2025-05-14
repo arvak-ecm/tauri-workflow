@@ -1,5 +1,5 @@
-import { PageInfo } from '@/core/types/reactRouter'
-import { Menu, MenuGroup, MenuItem, MenuSingle } from '@/core/types/sidebar'
+import { PageInfo } from '@/core/types/reactRouter.type'
+import { Menu, MenuGroup, MenuItem, MenuSingle } from '@/core/types/sidebar.type'
 import { useMemo } from 'react'
 
 const storeMenu: MenuSingle[] = []

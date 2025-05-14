@@ -2,9 +2,9 @@ import LucideIcon from '@/components/customizer/LucideIcon'
 import { SidebarPositionsEnum } from '@/core/data/Sidebar'
 import usePageInfo from '@/hooks/usePageInfo'
 import { cn } from '@/lib/utils'
-import { SidebarSettings } from '@/core/types/sidebar'
+import { SidebarSettings } from '@/core/types/sidebar.type'
 import { useAtomValue } from 'jotai'
-import { sidebarSettingsAtom } from '@/core/atom/sidebar'
+import { sidebarSettingsAtom } from '@/core/atom/sidebar.store'
 
 interface HeaderNavProps {
   className?: string

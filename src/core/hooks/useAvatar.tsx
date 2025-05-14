@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { avatarAtom } from '@/core/atom/avatar'
+import { avatarAtom } from '@/core/atom/avatar.store'
 
 function useAvatar() {
   const [avatar, setAvatarState] = useAtom(avatarAtom)

@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect } from 'react'
 import type { ReactNode } from 'react'
 
 // React Imports
-import type { ThemeStyleProps, ThemeStyles } from '@/core/types/theme'
+import type { ThemeStyleProps, ThemeStyles } from '@/core/types/theme.type'
 
 // Hook Imports
 import { useSettings } from '@/core/hooks/useSettings'

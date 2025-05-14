@@ -1,4 +1,4 @@
-import { PageInfo } from '@/core/types/reactRouter'
+import { PageInfo } from '@/core/types/reactRouter.type'
 import { isMatch, useMatches } from '@tanstack/react-router'
 
 const usePageInfo = () => {

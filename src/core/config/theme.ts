@@ -1,5 +1,5 @@
 // Type Imports
-import type { ThemeStyles } from '@/core/types/theme'
+import type { ThemeStyles } from '@/core/types/theme.type'
 
 export const COMMON_STYLES = [
   'font-default',

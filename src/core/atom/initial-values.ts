@@ -1,11 +1,12 @@
 import { getInicialStateStore } from '@/core/functions/store'
 
-import { sidebarSettingsAtom } from '@/core/atom/sidebar'
-import { appSettingsThemeAtom } from '@/core/atom/theme'
-import { drawerIsOpen } from '@/core/atom/drawer'
-import { typeFormNodes } from '@/core/atom/form'
-import { tableExportAtom, tableFilterAtom } from '@/core/atom/table'
-import { avatarAtom } from '@/core/atom/avatar'
+import { sidebarSettingsAtom } from '@/core/atom/sidebar.store'
+import { appSettingsThemeAtom } from '@/core/atom/theme.store'
+import { drawerIsOpen } from '@/core/atom/drawer.store'
+import { typeFormNodes } from '@/core/atom/form.store'
+import { tableExportAtom, tableFilterAtom } from '@/core/atom/table.store'
+import { avatarAtom } from '@/core/atom/avatar.store'
+import { appActiveAtom } from '@/core/atom/app.store'
 export const themeInitial = {
   mode: 'light',
   theme: {
@@ -109,6 +110,15 @@ export const themeInitial = {
 }
 
 export const initialValues = [
+  [
+    appActiveAtom,
+    getInicialStateStore('appActiveAtom') || {
+      id: 'docubuilder',
+      name: 'Docu Builder',
+      logo: 'gallery-vertical-end',
+      description: 'Generate document templates'
+    }
+  ],
   [avatarAtom, getInicialStateStore('avatarAtom') || { color: 'gray', avatar: 'actor-chaplin' }],
   [
     sidebarSettingsAtom,

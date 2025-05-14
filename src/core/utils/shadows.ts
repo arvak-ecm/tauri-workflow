@@ -1,5 +1,5 @@
 // Type Imports
-import type { ThemeStyleProps } from '@/core/types/theme'
+import type { ThemeStyleProps } from '@/core/types/theme.type'
 import type { ColorFormat } from './color-converter'
 
 // Util Imports

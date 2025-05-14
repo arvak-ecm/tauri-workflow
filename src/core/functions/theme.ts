@@ -1,5 +1,5 @@
 import { Settings } from '@/core/contexts/settingsContext'
-import { ThemeStyleProps } from '@/core/types/theme'
+import { ThemeStyleProps } from '@/core/types/theme.type'
 
 // Helper function to ensure both themes are updated together
 export function updateBothThemes(settings: Settings, updates: Partial<ThemeStyleProps>) {

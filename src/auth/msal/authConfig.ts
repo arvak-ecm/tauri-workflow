@@ -1,4 +1,4 @@
-import { Configuration, LogLevel, PopupRequest } from '@azure/msal-browser'
+import { Configuration, LogLevel } from '@azure/msal-browser'
 
 export const msalConfig: Configuration = {
   auth: {
@@ -13,7 +13,7 @@ export const msalConfig: Configuration = {
     storeAuthStateInCookie: false
   },
   system: {
-    allowRedirectInIframe: true,
+    allowPlatformBroker: false,
     loggerOptions: {
       piiLoggingEnabled: false,
       loggerCallback: (level, message, containsPii) => {
@@ -41,9 +41,9 @@ export const msalConfig: Configuration = {
   }
 }
 
-export const loginRequest: PopupRequest = {
+export const loginRequest = {
   scopes: ['User.Read'],
-  prompt: 'login'
+  responseMode: 'query'
 }
 
 export const graphConfig = {

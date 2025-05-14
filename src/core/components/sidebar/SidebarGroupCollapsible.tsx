@@ -1,7 +1,7 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@shadcn/collapsible'
 import { SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub } from '@shadcn/sidebar'
 import usePageInfo from '@/hooks/usePageInfo'
-import { MenuGroup, MenuSingle } from '@/core/types/sidebar'
+import { MenuGroup, MenuSingle } from '@/core/types/sidebar.type'
 import { Link } from '@tanstack/react-router'
 import { ChevronRight } from 'lucide-react'
 import LucideIcon from '@/components/customizer/LucideIcon'

@@ -5,7 +5,7 @@ interface ImportMetaEnv {
   readonly VITE_ENTRA_CLIENT_ID: string
   readonly VITE_ENTRA_REDIRECT_URI: string
   readonly VITE_ENTRA_AUTHORITY: string
-  readonly VITE_LOGIN_ACTIVATED: boolean
+  readonly VITE_LOGIN_ACTIVATED: string
   readonly VITE_DNI_CHL_LENGTH: number
 
   readonly VITE_HOST_SSM: string

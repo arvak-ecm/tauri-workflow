@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 import type { ReactNode } from 'react'
-import type { ThemePreset } from '@/core/types/theme'
+import type { ThemePreset } from '@/core/types/theme.type'
 import { defaultThemeState } from '@/core/config/theme'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { getPresetThemeStyles } from '@/core/utils/theme-presets'

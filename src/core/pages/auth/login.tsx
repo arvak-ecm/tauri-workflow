@@ -2,11 +2,10 @@ import { Button } from '@shadcn/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@shadcn/card'
 import { useMsal } from '@azure/msal-react'
 import { startServerRust } from '@/auth/oauth'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { loginRequest } from '@/auth/msal/authConfig'
 import { listen } from '@tauri-apps/api/event'
 function LoginPage() {
-  const [port, setPort] = useState<number | null>(null)
   const { instance } = useMsal()
 
   useEffect(() => {
@@ -25,13 +24,11 @@ function LoginPage() {
       console.log(`🔐 OAuth server started on port ${port}`)
 
       // Inicia login OAuth (redirige al navegador)
-      await instance.loginRedirect({
+      instance.loginRedirect({
         ...loginRequest,
         redirectUri: `${import.meta.env.VITE_ENTRA_REDIRECT_URI}`
+        //redirectUri: 'http://localhost:1430/auth-success'
       })
-
-      const result = await instance.handleRedirectPromise()
-      console.log('startOAuthFlow', result)
     } catch (error) {
       console.error('🚨 Error en flujo OAuth:', error)
     }

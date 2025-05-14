@@ -12,7 +12,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '
 import { Skeleton } from '@shadcn/skeleton'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@shadcn/tooltip'
 import { useAtom } from 'jotai'
-import { sidebarIsOpenAtom } from '@/core/atom/sidebar'
+import { sidebarIsOpenAtom } from '@/core/atom/sidebar.store'
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7

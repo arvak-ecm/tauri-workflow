@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai'
 import { Table, TableBody, TableCell, TableRow } from '@shadcn/table'
-import { isFilterTableAtom } from '@/core/atom/table'
+import { isFilterTableAtom } from '@/core/atom/table.store'
 import {
   flexRender,
   getCoreRowModel,

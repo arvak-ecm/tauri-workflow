@@ -1,4 +1,4 @@
-import { isFilterTableAtom, tableExportAtom } from '@/core/atom/table'
+import { isFilterTableAtom, tableExportAtom } from '@/core/atom/table.store'
 import { Button } from '@shadcn/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@shadcn/dropdown-menu'
 import { cn } from '@/lib/utils'

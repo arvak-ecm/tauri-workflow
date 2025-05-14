@@ -1,4 +1,4 @@
-import { isFilterTableAtom } from '@/core/atom/table'
+import { isFilterTableAtom } from '@/core/atom/table.store'
 import { Input } from '@shadcn/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@shadcn/select'
 import { cn } from '@/lib/utils'

@@ -1,5 +1,5 @@
 import AccountPage from '@/core/pages/auth/account'
-import { PageInfo } from '@/core/types/reactRouter'
+import { PageInfo } from '@/core/types/reactRouter.type'
 import { createFileRoute } from '@tanstack/react-router'
 
 const pageInfo: PageInfo = {

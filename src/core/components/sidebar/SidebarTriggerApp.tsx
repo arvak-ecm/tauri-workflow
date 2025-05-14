@@ -1,7 +1,7 @@
 import { SidebarTrigger } from '@shadcn/sidebar'
 import { useAtomValue } from 'jotai'
-import { SidebarSettings } from '@/core/types/sidebar'
-import { sidebarSettingsAtom } from '@/core/atom/sidebar'
+import { SidebarSettings } from '@/core/types/sidebar.type'
+import { sidebarSettingsAtom } from '@/core/atom/sidebar.store'
 import { SidebarPositionsEnum, SidebarCollapsibleEnum } from '@/core/data/Sidebar'
 import { cn } from '@/lib/utils'
 

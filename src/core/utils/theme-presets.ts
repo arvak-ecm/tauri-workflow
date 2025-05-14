@@ -1,4 +1,4 @@
-import type { ThemeStyles } from '@/core/types/theme'
+import type { ThemeStyles } from '@/core/types/theme.type'
 import { defaultThemeState } from '@/core/config/theme'
 import dataPresets from '@/core/data/theme-presets.json'
 
