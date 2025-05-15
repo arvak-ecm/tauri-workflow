@@ -1,7 +1,7 @@
 import { PageInfo } from '@/core/types/reactRouter.type'
 import { Menu, MenuGroup, MenuItem, MenuSingle } from '@/core/types/sidebar.type'
 
-const storeMenuGroup: MenuGroup[] = [
+export const storeMenuGroup: MenuGroup[] = [
   {
     type: 'group',
     id: 'new-case',
@@ -20,7 +20,7 @@ const storeMenuGroup: MenuGroup[] = [
   }
 ]
 
-const storeMenu: MenuSingle[] = [
+export const storeMenu: MenuSingle[] = [
   {
     type: 'single',
     id: 'home',

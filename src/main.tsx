@@ -10,6 +10,7 @@ import { Provider } from 'jotai'
 import { globalStore, HydrateAtoms } from '@/core/atom/store'
 import { initialValues } from '@/core/atom/initial-values'
 import { RowData } from '@tanstack/react-table'
+import { createAppSettingFile } from '@/core/functions/createSettingsFile'
 
 const router = createRouter()
 
@@ -30,10 +31,15 @@ declare module '@tanstack/react-table' {
   }
 }
 
+const initializeStore = async () => {
+  await createAppSettingFile()
+}
+
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
-  msalInstance.initialize().then(() => {
+  msalInstance.initialize().then(async () => {
+    //await initializeStore()
     const accounts = msalInstance.getAllAccounts()
     if (accounts.length > 0) {
       msalInstance.setActiveAccount(accounts[0])

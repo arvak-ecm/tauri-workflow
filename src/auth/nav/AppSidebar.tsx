@@ -15,7 +15,7 @@ const menu = [
   { id: 'admin', children: ['admin-users', 'admin-roles'] }
 ]
 
-function AppSidebar() {
+const AppSidebar = () => {
   const sidebarSettings = useAtomValue<SidebarSettings>(sidebarSettingsAtom)
   const menuApp = getMenuApp(menu)
 
