@@ -35,7 +35,7 @@ export async function getMenuApp(menu: Menu, app: AppProps): Promise<(MenuSingle
   }>(`menu_${app.id}`)
 
   return menu
-    .map(item => (item.children ? getMenuGroup(item, menuDefault) : getSingleMenu(item.id, menuDefault.storeMenu)))
+    .map(item => (item.children ? getMenuGroup(item, storeMenu) : getSingleMenu(item.id, menuDefault.storeMenu)))
     .filter(Boolean) as (MenuSingle | MenuGroup)[]
 }
 

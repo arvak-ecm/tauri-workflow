@@ -7,6 +7,8 @@ import SidebarSingleMenu from '@/core/components/sidebar/SidebarSingleMenu'
 import SideBarGroupCollapsible from '@/core/components/sidebar/SidebarGroupCollapsible'
 import AppSwitcher from '@/core/components/app-switcher'
 import SidebarMenuUser from '@/core/components/sidebar/SidebarMenuUser'
+import useApp from '@/core/hooks/useApp'
+import { useQueryClient } from '@tanstack/react-query'
 
 const menu = [
   { id: 'home' },
@@ -16,7 +18,9 @@ const menu = [
 ]
 
 const AppSidebar = () => {
+  const { appActive } = useApp()
   const sidebarSettings = useAtomValue<SidebarSettings>(sidebarSettingsAtom)
+  const { data } = useQueryClient()
   const menuApp = getMenuApp(menu)
 
   return (
@@ -46,4 +50,5 @@ const AppSidebar = () => {
   )
 }
 
+AppSidebar.displayName = 'AppSidebar'
 export default AppSidebar
