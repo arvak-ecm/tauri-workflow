@@ -39,7 +39,7 @@ const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   msalInstance.initialize().then(async () => {
-    //await initializeStore()
+    await initializeStore()
     const accounts = msalInstance.getAllAccounts()
     if (accounts.length > 0) {
       msalInstance.setActiveAccount(accounts[0])

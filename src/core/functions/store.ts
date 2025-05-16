@@ -1,6 +1,6 @@
 import { StoreTauriFactory } from './instances'
 
-export const getInicialStateStore = async (key: string) => {
+export const getInicialStateStore = (key: string) => {
   try {
     let store = localStorage.getItem(key)
     if (store === null) return getStoreAppSettingFile(key)

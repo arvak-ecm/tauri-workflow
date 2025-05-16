@@ -108,7 +108,7 @@ const appMenuGarra = {
       id: 'new-case',
       nameGroup: '',
       name: 'Cases',
-      icon: 'layers',
+      icon: 'Layers',
       subMenu: []
     },
     {
@@ -116,7 +116,7 @@ const appMenuGarra = {
       id: 'admin',
       nameGroup: '',
       name: 'Admin',
-      icon: 'server-cog',
+      icon: 'ServerCog',
       subMenu: []
     }
   ],
@@ -126,35 +126,35 @@ const appMenuGarra = {
       id: 'home',
       name: 'Portal',
       description: 'List of cases',
-      icon: 'home',
+      icon: 'Home',
       href: '/garra/home'
     },
     {
       type: 'single',
       id: 'new-case',
       name: 'New Case',
-      icon: 'book-type',
+      icon: 'BookType',
       href: '/garra/case/$caseId'
     },
     {
       type: 'single',
       id: 'dashboard',
       name: 'Dashboard',
-      icon: 'layout-dashboard',
+      icon: 'LayoutDashboard',
       href: '/garra/dashboard'
     },
     {
       type: 'single',
       id: 'admin-users',
       name: 'Users',
-      icon: 'users',
+      icon: 'Users',
       href: '/garra/admin/users'
     },
     {
       type: 'single',
       id: 'admin-roles',
       name: 'Roles',
-      icon: 'shield-user',
+      icon: 'ShieldUser',
       href: '/garra/admin/roles'
     }
   ]
