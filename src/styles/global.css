@@ -4,6 +4,7 @@
 
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 :root {
@@ -81,7 +82,11 @@
     @apply tracking-widest;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground h-full w-full overflow-hidden;
+    background-image: url('images/logo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 }
 
@@ -94,7 +99,29 @@
   background-position: center;
 }
 
+.ce-popover__items {
+  overflow: hidden;
+}
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: 84% !important;
+}
+
 @layer components {
+  #root {
+    @apply flex h-screen w-screen flex-col items-center justify-center;
+  }
+  #splash {
+    @apply flex flex-col items-center gap-2 transition-opacity duration-500 ease-in-out;
+  }
+  #splash h1 {
+    @apply text-card w-full text-center text-6xl font-bold;
+    color: var(--card-foreground) !important;
+    font-family: 'Fira Code';
+  }
+  #splash img {
+    width: 60%;
+  }
   input,
   button {
     @apply focus:!ring-0 focus:!ring-offset-0;
@@ -121,6 +148,30 @@
   }
 }
 
+/* Start Clerk */
+
+.cl-rootBox {
+  width: 100%;
+  height: 100%;
+}
+.cl-cardBox {
+  width: 100% !important;
+  height: 100% !important;
+  box-shadow: none !important;
+}
+.cl-footer *,
+.cl-navbar * {
+  background: none !important;
+}
+h1[data-localization-key='userProfile.navbar.title'],
+p[data-localization-key='userProfile.navbar.description'] {
+  display: none !important;
+}
+.cl-navbar > div:nth-child(2) {
+  gap: 0 !important;
+}
+
+/*End Clerk*/
 html {
   font-family: var(--font-default);
 }

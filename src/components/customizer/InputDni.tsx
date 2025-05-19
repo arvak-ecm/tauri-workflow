@@ -23,7 +23,7 @@ const DniInput: React.FC<PropsInput> = ({ value, onChange, onKeyPress }) => (
   <Input
     value={value}
     className='rounded-r-none'
-    placeholder='Ej: 23108346-4'
+    placeholder='Ej: 11111111-1'
     onChange={onChange}
     max={DNI_LENGTH}
     onKeyDown={onKeyPress}
@@ -67,7 +67,7 @@ const InputDni: React.FC<PropsDni> = ({ value = '' }) => {
         </span>
       </div>
       <Button disabled={!isValid || dni === ''} className='rounded-l-none' variant='default' tooltip='Search/Enter'>
-        <LucideIcon iconName='search' />
+        <LucideIcon iconName='Search' />
       </Button>
     </div>
   )

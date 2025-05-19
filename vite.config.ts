@@ -3,12 +3,12 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { defineConfig } from 'vite'
+import { mdx } from '@cyco130/vite-plugin-mdx'
 
 const host = process.env.TAURI_DEV_HOST
 
-// https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [TanStackRouterVite({ target: 'react', autoCodeSplitting: true }), react(), tailwindcss()],
+  plugins: [TanStackRouterVite({ target: 'react', autoCodeSplitting: true }), mdx(), react(), tailwindcss()],
   build: {
     rollupOptions: {
       output: {

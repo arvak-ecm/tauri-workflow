@@ -1,24 +1,17 @@
-import { StoreTauriFactory } from '@/core/functions/instances'
 import { PageInfo } from '@/core/types/reactRouter.type'
-import { Menu, MenuGroup, MenuItem, MenuSingle } from '@/core/types/sidebar.type'
-import { AppProps } from '../types/app.type'
+import { ItemMenuPerfilProps, MenuPerfilProps, MenuProps, MenuSingle, MenuGroup } from '@/core/types/menu.type'
+import { routesCommons } from '@/core/data/apps'
 
-const getSingleMenu = (id: string, storeMenu: MenuSingle[]): MenuSingle | undefined => {
-  return storeMenu.find(item => item.id === id)
+const getSingleMenu = (id: string, menuApp: MenuSingle[]): MenuSingle | undefined => {
+  return menuApp.find(item => item.id === id)
 }
 
-const getMenuGroup = (
-  menu: MenuItem,
-  menuDefault: {
-    storeMenu: MenuSingle[]
-    storeMenuGroup: MenuGroup[]
-  }
-): MenuGroup | undefined => {
-  const group = menuDefault.storeMenuGroup.find(group => group.id === menu.id)
+const getMenuGroup = (menu: ItemMenuPerfilProps, menuApp: MenuProps): MenuGroup | undefined => {
+  const group = menuApp.groups?.find(group => group.id === menu.id)
   if (!group || !menu.children) return undefined
 
   const subMenu: MenuSingle[] = menu.children
-    .map(id => getSingleMenu(id, menuDefault.storeMenu))
+    .map(id => getSingleMenu(id, menuApp.single))
     .filter(Boolean) as MenuSingle[]
 
   return {
@@ -27,16 +20,18 @@ const getMenuGroup = (
   }
 }
 
-export async function getMenuApp(menu: Menu, app: AppProps): Promise<(MenuSingle | MenuGroup)[]> {
-  const store = await StoreTauriFactory.getInstance('app_settings')
-  const storeMenu = await store.get<{
-    storeMenu: MenuSingle[]
-    storeMenuGroup: MenuGroup[]
-  }>(`menu_${app.id}`)
-
-  return menu
-    .map(item => (item.children ? getMenuGroup(item, storeMenu) : getSingleMenu(item.id, menuDefault.storeMenu)))
+export async function getMenuApp(menuPerfil: MenuPerfilProps, menuApp: MenuProps): Promise<(MenuSingle | MenuGroup)[]> {
+  const lastRoute = (await localStorage.getItem('lastRouteUser')) || ''
+  if (isRouteCommons(lastRoute)) {
+    menuApp.routeDefault = lastRoute
+  }
+  return menuPerfil
+    .map(item => (item.children ? getMenuGroup(item, menuApp) : getSingleMenu(item.id, menuApp.single)))
     .filter(Boolean) as (MenuSingle | MenuGroup)[]
+}
+
+function isRouteCommons(route: string) {
+  return routesCommons.includes(route)
 }
 
 export function getPageInfo(menu: string): PageInfo {

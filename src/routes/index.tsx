@@ -1,4 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
+import Sample from '@/core/md/spectra.mdx'
+import MarkdownWrapper from '@/components/customizer/MDWrapper'
 
 const pageInfo = {
   title: 'Index',
@@ -7,9 +9,13 @@ const pageInfo = {
 
 export const Route = createFileRoute('/')({
   loader: async () => pageInfo,
-  component: Index
+  component: Page
 })
 
-function Index() {
-  return <h1 className='bg-primary text-primary-foreground text-center text-4xl'>Index</h1>
+function Page() {
+  return (
+    <MarkdownWrapper>
+      <Sample />
+    </MarkdownWrapper>
+  )
 }

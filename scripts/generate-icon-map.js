@@ -6,18 +6,15 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const validIcons = Object.entries(icons).filter(([key, val]) => /^[A-Z]/.test(key) && typeof val === 'function')
-
-console.log('Iconos válidos:', validIcons.length)
-
-const iconEntries = Object.entries(icons)
-  .filter(([key]) => /^[A-Z]/.test(key))
-  .map(([name]) => `  ${name}: ${name},`)
-  .join('\n')
-
-const imports = Object.keys(icons)
-  .filter(key => /^[A-Z]/.test(key))
-  .join(',\n')
+const validIcons = Object.entries(icons).filter(
+  ([key, val]) =>
+    /^[A-Z]/.test(key) &&
+    !key.startsWith('Lucide') &&
+    !key.endsWith('Icon') &&
+    (typeof val === 'function' || typeof val === 'object')
+)
+const imports = validIcons.map(([name]) => name).join(',\n')
+const iconEntries = validIcons.map(([name]) => `  ${name}: ${name},`).join('\n')
 
 const content = `import {
 ${imports}

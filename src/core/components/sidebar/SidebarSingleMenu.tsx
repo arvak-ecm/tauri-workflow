@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@shadcn/sidebar'
 import { MenuSingle } from '@/core/types/sidebar.type'
 import LucideIcon from '@components/customizer/LucideIcon'
+import { IconName } from '../icons-map'
 
 const SidebarSingleMenu: React.FC<{ menu: MenuSingle }> = ({ menu }) => {
   return (
@@ -9,7 +10,7 @@ const SidebarSingleMenu: React.FC<{ menu: MenuSingle }> = ({ menu }) => {
       <SidebarMenuItem>
         <SidebarMenuButton tooltip={menu.name} asChild>
           <Link to={menu.href} activeProps={{ className: 'link-active-collapsible' }}>
-            {menu.icon && <LucideIcon iconName={menu.icon} className='text-sidebar-foreground' />}
+            {menu.icon && <LucideIcon iconName={menu.icon as IconName} className='text-sidebar-foreground' />}
             {menu.name}
           </Link>
         </SidebarMenuButton>

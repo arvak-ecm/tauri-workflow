@@ -1,3 +1,4 @@
+import { MenuProps } from '../types/menu.type'
 import { StoreTauriFactory } from './instances'
 const themeDefault = {
   mode: 'light',
@@ -101,8 +102,15 @@ const themeDefault = {
   }
 }
 
-const appMenuGarra = {
-  storeMenuGroup: [
+const menuDocBuilder: MenuProps = {
+  routeDefault: '/docbuilder/designer',
+  groups: [],
+  single: []
+}
+
+const menuGarra: MenuProps = {
+  routeDefault: '/garra/home',
+  groups: [
     {
       type: 'group',
       id: 'new-case',
@@ -120,7 +128,7 @@ const appMenuGarra = {
       subMenu: []
     }
   ],
-  storeMenu: [
+  single: [
     {
       type: 'single',
       id: 'home',
@@ -162,21 +170,43 @@ const appMenuGarra = {
 
 export const createAppSettingFile = async () => {
   const store = await StoreTauriFactory.getInstance('app_settings')
-  store.set('menu-garra', { value: appMenuGarra })
-  store.set('menu-docbuilder', { value: [] })
+  store.set('menu-garra', { value: menuGarra })
+  store.set('menu-docbuilder', { value: menuDocBuilder })
 
-  store.set('appActive', {
-    id: 'docubuilder',
-    name: 'Docu Builder',
-    logo: 'gallery-vertical-end',
-    description: 'Generate document templates'
+  store.set('appList', {
+    value: [
+      {
+        id: 'garra',
+        name: 'Visación y Curse',
+        logo: 'GalleryVerticalEnd',
+        description: 'Grc'
+      },
+      {
+        id: 'docbuilder',
+        name: 'Doc Builder',
+        logo: 'GalleryVerticalEnd',
+        description: 'Generate document templates'
+      }
+    ]
   })
 
-  store.set('avatar', { color: 'gray', avatar: 'actor-chaplin' })
-  store.set('app-settings-theme', themeDefault)
+  store.set('appActive', {
+    value: {
+      id: 'docbuilder',
+      name: 'Doc Builder',
+      logo: 'GalleryVerticalEnd',
+      description: 'Generate document templates'
+    }
+  })
+  store.set('appMenuActive', { value: menuDocBuilder })
+
+  store.set('avatar', { value: { color: 'gray', avatar: 'actor-chaplin' } })
+  store.set('app-settings-theme', { value: themeDefault })
   store.set('sidebarSettings', {
-    position: 'left',
-    variant: 'sidebar',
-    collapsible: 'icon'
+    value: {
+      position: 'left',
+      variant: 'sidebar',
+      collapsible: 'icon'
+    }
   })
 }

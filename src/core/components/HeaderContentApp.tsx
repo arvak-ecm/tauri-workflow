@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { SidebarSettings } from '@/core/types/sidebar.type'
 import { useAtomValue } from 'jotai'
 import { sidebarSettingsAtom } from '@/core/atom/sidebar.store'
+import { IconName } from './icons-map'
 
 interface HeaderNavProps {
   className?: string
@@ -21,7 +22,7 @@ const HeaderContentApp: React.FC<HeaderNavProps> = ({ className }) => {
         className
       )}
     >
-      {pageInfo.icon && <LucideIcon iconName={pageInfo.icon} className='text-primary size-10' />}
+      {pageInfo.icon && <LucideIcon iconName={pageInfo.icon as IconName} className='text-primary size-10' />}
       <div className='flex w-full flex-col items-start'>
         <h1 className='text-primary w-full text-xl font-bold'>{pageInfo.title}</h1>
         {pageInfo.description && <small className='text-xs'>{pageInfo.description}</small>}

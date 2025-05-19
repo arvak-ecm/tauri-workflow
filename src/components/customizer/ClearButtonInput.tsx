@@ -13,7 +13,7 @@ const ClearButtonInput: React.FC<Props> = ({ value, onClick }) => (
     title='clear-value'
     onClick={onClick}
   >
-    <LucideIcon iconName='x' className='text-destructive size-4' />
+    <LucideIcon iconName='X' className='text-destructive size-4' />
   </button>
 )
 

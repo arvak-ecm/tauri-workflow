@@ -2,6 +2,10 @@ const command = process.argv[2]
 const message = process.argv[3]
 
 switch (command) {
+  case 'auth':
+    if (message === 'CLERK') {
+    }
+    break
   case 'server':
     if (message === 'START') {
       console.log('🟢 Starting API server...')

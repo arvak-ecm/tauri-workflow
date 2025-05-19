@@ -2,13 +2,15 @@ export const apps = [
   {
     id: 'garra',
     name: 'Visación y Curse',
-    logo: 'gallery-vertical-end',
+    logo: 'GalleryVerticalEnd',
     description: 'Grc'
   },
   {
-    id: 'docubuilder',
-    name: 'Docu Builder',
-    logo: 'gallery-vertical-end',
+    id: 'docbuilder',
+    name: 'Doc Builder',
+    logo: 'GalleryVerticalEnd',
     description: 'Generate document templates'
   }
 ]
+
+export const routesCommons = ['/auth/account', '/theme/themes', '/theme/typography', '/theme/sidebar', '/theme/others']

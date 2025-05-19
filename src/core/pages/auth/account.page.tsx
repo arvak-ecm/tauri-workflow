@@ -1,23 +1,28 @@
-import { useMsal } from '@azure/msal-react'
 import { AvatarDefault } from '@/core/components/AvatarDefault'
 import { Button } from '@shadcn/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@shadcn/popover'
 import useAvatar from '@/core/hooks/useAvatar'
 import { cn } from '@/lib/utils'
 import ContentPopoverAvatar from '@/core/components/ContentPopoverAvatar'
-import { getInitialsUser } from '@/core/functions/user'
+import { useAuth } from '@/hooks/useAuth'
+import { UserProfile } from '@clerk/clerk-react'
+
+const AUTH_TYPE = import.meta.env.VITE_AUTH_TYPE as 'MSAL' | 'CLERK'
 
 const AccountPage: React.FC = () => {
-  const { accounts } = useMsal()
+  const auth = useAuth()
   const { avatar } = useAvatar()
+
+  if (AUTH_TYPE === 'CLERK') return <UserProfile />
 
   return (
     <div className='flex flex-col items-center justify-center gap-2 p-4'>
       <div className='group relative flex items-center justify-center'>
         <AvatarDefault
           name={avatar.avatar}
-          className={cn('size-60', avatar.color === 'gray' ? 'grayscale' : '')}
-          userName={getInitialsUser(accounts[0].name!)}
+          className={cn('size-40', avatar.color === 'gray' ? 'grayscale' : '')}
+          userName={auth?.initialsName}
+          avatarExternalUrl={auth?.avatar}
         />
         <Popover>
           <PopoverTrigger asChild>
@@ -35,8 +40,8 @@ const AccountPage: React.FC = () => {
           </PopoverContent>
         </Popover>
       </div>
-      <p>{accounts[0].name}</p>
-      <p>{accounts[0].username}</p>
+      <p>{auth?.userName}</p>
+      <p>{auth?.email}</p>
     </div>
   )
 }

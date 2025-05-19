@@ -3,21 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link
-      rel="preload"
-      href="/fonts/Sans-serif/OpenSans-Variable.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href="/fonts/Serif/LibreBaskerville-Regular.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin="anonymous"
-    />
-    <link rel="preload" href="/fonts/Mono/FiraCode-VF.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+    <link href="/fonts/Sans-serif/OpenSans-Variable.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+    <link href="/fonts/Serif/LibreBaskerville-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+    <link href="/fonts/Mono/FiraCode-VF.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tauri + React + Typescript</title>
   </head>
@@ -26,10 +14,16 @@
     body {
       background: var(--background);
       letter-spacing: var(--tracking-normal);
+      overflow: hidden;
     }
   </style>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="splash" style="opacity: 0">
+        <h1>Welcome to Spectra</h1>
+        <img id="logo" fetchpriority="high" decoding="async" src="images/logo.png" alt="Spectra" />
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

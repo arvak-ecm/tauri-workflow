@@ -1,5 +1,5 @@
 [package]
-name = "vyc-credicts"
+name = "expectra"
 version = "0.1.0"
 description = "Application for managing visa approvals and processing credit applications, streamlining the review, validation, and decision-making workflows."
 authors = ["cardosomartin33@gmail.com"]
@@ -11,7 +11,7 @@ edition = "2021"
 # The `_lib` suffix may seem redundant but it is necessary
 # to make the lib name unique and wouldn't conflict with the bin name.
 # This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
-name = "vyc_credicts_lib"
+name = "expectra_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

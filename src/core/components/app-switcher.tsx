@@ -1,4 +1,3 @@
-import { ChevronsUpDown } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,22 +9,29 @@ import {
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@shadcn/sidebar'
 import useApp from '@/core/hooks/useApp'
 import LucideIcon from '@/components/customizer/LucideIcon'
-import { apps } from '@/core/data/apps'
+import { useAtomValue } from 'jotai'
+import { appListAtom } from '@/core/atom/app.store'
+import { AppProps } from '@/core/types/app.type'
+import { IconName } from '@/core/components/icons-map'
 
 const AppSwitcher = () => {
-  if (apps.length > 1) {
-    return <MultipleAppsSwitcher />
+  const { appActive } = useApp()
+  const appList = useAtomValue<AppProps[]>(appListAtom)
+
+  if (appList.length > 1) {
+    return <MultipleAppsSwitcher appList={appList} />
   }
-  return <SingleApp />
+  return <SingleApp appActive={appActive} />
 }
 
-const SingleApp = () => {
-  const { appActive } = useApp()
+const SingleApp: React.FC<{
+  appActive: AppProps
+}> = ({ appActive }) => {
   return (
     <SidebarMenu>
       <SidebarMenuItem className='flex items-center gap-2'>
         <div className='flex aspect-square size-8 items-center justify-center rounded-sm border'>
-          <LucideIcon iconName={appActive.logo} className='text-sidebar-foreground size-4 shrink-0' />
+          <LucideIcon iconName={appActive.logo as IconName} className='text-sidebar-foreground size-4 shrink-0' />
         </div>
         <div className='grid flex-1 text-left text-sm leading-tight'>
           <span className='truncate font-semibold'>{appActive.name}</span>
@@ -36,7 +42,9 @@ const SingleApp = () => {
   )
 }
 
-const MultipleAppsSwitcher = () => {
+const MultipleAppsSwitcher: React.FC<{
+  appList: AppProps[]
+}> = ({ appList }) => {
   const { isMobile } = useSidebar()
   const { appActive, setAppActive } = useApp()
 
@@ -50,13 +58,13 @@ const MultipleAppsSwitcher = () => {
               className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
             >
               <div className='flex aspect-square size-8 items-center justify-center rounded-sm border'>
-                <LucideIcon iconName={appActive.logo} className='text-sidebar-foreground size-4 shrink-0' />
+                <LucideIcon iconName={appActive.logo as IconName} className='text-sidebar-foreground size-4 shrink-0' />
               </div>
               <div className='grid flex-1 text-left text-sm leading-tight'>
                 <span className='truncate font-semibold'>{appActive.name}</span>
                 <span className='truncate text-xs'>{appActive.description}</span>
               </div>
-              <ChevronsUpDown className='ml-auto' />
+              <LucideIcon iconName='ChevronsUpDown' className='ml-auto' />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -66,10 +74,10 @@ const MultipleAppsSwitcher = () => {
             sideOffset={4}
           >
             <DropdownMenuLabel className='text-muted-foreground text-xs'>Apps</DropdownMenuLabel>
-            {apps.map((app, index) => (
+            {appList.map((app, index) => (
               <DropdownMenuItem key={app.name} onClick={() => setAppActive(app)} className='gap-2 p-2'>
                 <div className='flex size-6 items-center justify-center rounded-sm border'>
-                  <LucideIcon iconName={app.logo} className='text-sidebar-foreground size-4 shrink-0' />
+                  <LucideIcon iconName={app.logo as IconName} className='text-sidebar-foreground size-4 shrink-0' />
                 </div>
                 {app.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>

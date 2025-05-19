@@ -6,11 +6,14 @@ interface Props {
   name: string
   userName?: string
   className?: string
+  avatarExternalUrl?: string
 }
 
-export const AvatarDefault: React.FC<Props> = ({ name, userName = 'NF', className }) => {
-  const avatar = getSrcAvatar(name)
-
+export const AvatarDefault: React.FC<Props> = ({ name, userName = 'NF', className, avatarExternalUrl }) => {
+  let avatar = getSrcAvatar(name)
+  if (avatarExternalUrl) {
+    avatar = avatarExternalUrl
+  }
   return (
     <Avatar className={className}>
       <AnimatePresence mode='wait'>

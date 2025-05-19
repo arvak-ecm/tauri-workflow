@@ -1,4 +1,4 @@
-import { BellIcon, LogOutIcon, MoreVerticalIcon, Palette, UserCircleIcon } from 'lucide-react'
+import { MoreVerticalIcon } from 'lucide-react'
 
 import {
   DropdownMenu,
@@ -10,33 +10,20 @@ import {
   DropdownMenuTrigger
 } from '@shadcn/dropdown-menu'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@shadcn/sidebar'
-import { useMsal } from '@azure/msal-react'
 import { Link } from '@tanstack/react-router'
 import { AvatarDefault } from '@/core/components/AvatarDefault'
 import useAvatar from '@/core/hooks/useAvatar'
 import { cn } from '@/lib/utils'
-import { getInitialsUser } from '@/core/functions/user'
+import { memo } from 'react'
+import { useAuth } from '@/hooks/useAuth'
+import { useLogout } from '@/hooks/useLogout'
+import LucideIcon from '@/components/customizer/LucideIcon'
 
 const SidebarMenuUser = () => {
   const { avatar } = useAvatar()
-  const { instance, accounts } = useMsal()
+  const auth = useAuth()
+  const handleLogout = useLogout()
   const { isMobile } = useSidebar()
-
-  const handleLogoutRedirect = () => {
-    const activeAccount = instance.getAccountByHomeId(accounts[0].homeAccountId)
-    if (activeAccount) {
-      instance.logoutRedirect({
-        account: activeAccount,
-        extraQueryParameters: {
-          client_info: '1' // 👈 fuerza limpieza más profunda
-        }
-      })
-    } else {
-      instance.logoutRedirect({
-        postLogoutRedirectUri: '/logout'
-      })
-    }
-  }
 
   return (
     <SidebarMenu>
@@ -49,14 +36,13 @@ const SidebarMenuUser = () => {
             >
               <AvatarDefault
                 name={avatar.avatar}
-                userName={accounts.length > 0 ? getInitialsUser(accounts[0].name!) : undefined}
+                userName={auth?.initialsName}
                 className={cn('size-8 rounded-lg', avatar.color === 'gray' ? 'grayscale' : '')}
+                avatarExternalUrl={auth?.avatar}
               />
               <div className='grid flex-1 text-left text-sm leading-tight'>
-                <span className='truncate font-medium'>{accounts.length > 0 ? accounts[0].name : 'test'}</span>
-                <span className='text-muted-foreground truncate text-xs'>
-                  {accounts.length > 0 ? accounts[0].username : 'test'}
-                </span>
+                <span className='truncate font-medium'>{auth?.userName}</span>
+                <span className='text-muted-foreground truncate text-xs'>{auth?.email}</span>
               </div>
               <MoreVerticalIcon className='ml-auto size-4' />
             </SidebarMenuButton>
@@ -71,38 +57,42 @@ const SidebarMenuUser = () => {
               <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                 <AvatarDefault
                   name={avatar.avatar}
-                  userName={accounts.length > 0 ? getInitialsUser(accounts[0].name!) : undefined}
+                  userName={auth?.initialsName}
                   className={cn('size-8 rounded-lg', avatar.color === 'gray' ? 'grayscale' : '')}
+                  avatarExternalUrl={auth?.avatar}
                 />
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-medium'>{accounts.length > 0 ? accounts[0].name : 'test'}</span>
-                  <span className='text-muted-foreground truncate text-xs'>
-                    {accounts.length > 0 ? accounts[0].username : 'test'}
-                  </span>
+                  <span className='truncate font-medium'>{auth?.userName}</span>
+                  <span className='text-muted-foreground truncate text-xs'>{auth?.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
+                <Link to='/'>
+                  <LucideIcon iconName='Info' /> About
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link to='/auth/account'>
-                  <UserCircleIcon /> Account
+                  <LucideIcon iconName='UserCircle' /> Account
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <BellIcon />
+                <LucideIcon iconName='Bell' />
                 Notifications
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to='/theme/themes' activeProps={{ className: 'link-active-dropdown' }}>
-                  <Palette />
+                  <LucideIcon iconName='Palette' />
                   Theme
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogoutRedirect}>
-              <LogOutIcon />
+            <DropdownMenuItem onClick={handleLogout}>
+              <LucideIcon iconName='LogOut' />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -113,4 +103,4 @@ const SidebarMenuUser = () => {
 }
 
 SidebarMenuUser.displayName = 'SidebarMenuUser'
-export default SidebarMenuUser
+export default memo(SidebarMenuUser)

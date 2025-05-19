@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    vyc_credicts_lib::run()
+    expectra_lib::run()
 }
