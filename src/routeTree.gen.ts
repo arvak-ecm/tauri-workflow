@@ -26,8 +26,6 @@ import { Route as AuthAccountImport } from './routes/auth/account'
 import { Route as GarraCaseCaseIdImport } from './routes/garra/case.$caseId'
 import { Route as GarraAdminUsersImport } from './routes/garra/admin/users'
 import { Route as GarraAdminRolesImport } from './routes/garra/admin/roles'
-import { Route as AuthClerkSignUpImport } from './routes/auth/clerk/sign-up'
-import { Route as AuthClerkSignInImport } from './routes/auth/clerk/sign-in'
 
 // Create/Update Routes
 
@@ -121,18 +119,6 @@ const GarraAdminRolesRoute = GarraAdminRolesImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthClerkSignUpRoute = AuthClerkSignUpImport.update({
-  id: '/auth/clerk/sign-up',
-  path: '/auth/clerk/sign-up',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthClerkSignInRoute = AuthClerkSignInImport.update({
-  id: '/auth/clerk/sign-in',
-  path: '/auth/clerk/sign-in',
-  getParentRoute: () => rootRoute,
-} as any)
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -221,20 +207,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThemeTypographyImport
       parentRoute: typeof ThemeImport
     }
-    '/auth/clerk/sign-in': {
-      id: '/auth/clerk/sign-in'
-      path: '/auth/clerk/sign-in'
-      fullPath: '/auth/clerk/sign-in'
-      preLoaderRoute: typeof AuthClerkSignInImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/clerk/sign-up': {
-      id: '/auth/clerk/sign-up'
-      path: '/auth/clerk/sign-up'
-      fullPath: '/auth/clerk/sign-up'
-      preLoaderRoute: typeof AuthClerkSignUpImport
-      parentRoute: typeof rootRoute
-    }
     '/garra/admin/roles': {
       id: '/garra/admin/roles'
       path: '/garra/admin/roles'
@@ -290,8 +262,6 @@ export interface FileRoutesByFullPath {
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/auth/clerk/sign-in': typeof AuthClerkSignInRoute
-  '/auth/clerk/sign-up': typeof AuthClerkSignUpRoute
   '/garra/admin/roles': typeof GarraAdminRolesRoute
   '/garra/admin/users': typeof GarraAdminUsersRoute
   '/garra/case/$caseId': typeof GarraCaseCaseIdRoute
@@ -310,8 +280,6 @@ export interface FileRoutesByTo {
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/auth/clerk/sign-in': typeof AuthClerkSignInRoute
-  '/auth/clerk/sign-up': typeof AuthClerkSignUpRoute
   '/garra/admin/roles': typeof GarraAdminRolesRoute
   '/garra/admin/users': typeof GarraAdminUsersRoute
   '/garra/case/$caseId': typeof GarraCaseCaseIdRoute
@@ -331,8 +299,6 @@ export interface FileRoutesById {
   '/theme/sidebar': typeof ThemeSidebarRoute
   '/theme/themes': typeof ThemeThemesRoute
   '/theme/typography': typeof ThemeTypographyRoute
-  '/auth/clerk/sign-in': typeof AuthClerkSignInRoute
-  '/auth/clerk/sign-up': typeof AuthClerkSignUpRoute
   '/garra/admin/roles': typeof GarraAdminRolesRoute
   '/garra/admin/users': typeof GarraAdminUsersRoute
   '/garra/case/$caseId': typeof GarraCaseCaseIdRoute
@@ -353,8 +319,6 @@ export interface FileRouteTypes {
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/auth/clerk/sign-in'
-    | '/auth/clerk/sign-up'
     | '/garra/admin/roles'
     | '/garra/admin/users'
     | '/garra/case/$caseId'
@@ -372,8 +336,6 @@ export interface FileRouteTypes {
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/auth/clerk/sign-in'
-    | '/auth/clerk/sign-up'
     | '/garra/admin/roles'
     | '/garra/admin/users'
     | '/garra/case/$caseId'
@@ -391,8 +353,6 @@ export interface FileRouteTypes {
     | '/theme/sidebar'
     | '/theme/themes'
     | '/theme/typography'
-    | '/auth/clerk/sign-in'
-    | '/auth/clerk/sign-up'
     | '/garra/admin/roles'
     | '/garra/admin/users'
     | '/garra/case/$caseId'
@@ -408,8 +368,6 @@ export interface RootRouteChildren {
   DocbuilderDesignerRoute: typeof DocbuilderDesignerRoute
   GarraDashboardRoute: typeof GarraDashboardRoute
   GarraHomeRoute: typeof GarraHomeRoute
-  AuthClerkSignInRoute: typeof AuthClerkSignInRoute
-  AuthClerkSignUpRoute: typeof AuthClerkSignUpRoute
   GarraAdminRolesRoute: typeof GarraAdminRolesRoute
   GarraAdminUsersRoute: typeof GarraAdminUsersRoute
   GarraCaseCaseIdRoute: typeof GarraCaseCaseIdRoute
@@ -424,8 +382,6 @@ const rootRouteChildren: RootRouteChildren = {
   DocbuilderDesignerRoute: DocbuilderDesignerRoute,
   GarraDashboardRoute: GarraDashboardRoute,
   GarraHomeRoute: GarraHomeRoute,
-  AuthClerkSignInRoute: AuthClerkSignInRoute,
-  AuthClerkSignUpRoute: AuthClerkSignUpRoute,
   GarraAdminRolesRoute: GarraAdminRolesRoute,
   GarraAdminUsersRoute: GarraAdminUsersRoute,
   GarraCaseCaseIdRoute: GarraCaseCaseIdRoute,
@@ -449,8 +405,6 @@ export const routeTree = rootRoute
         "/docbuilder/designer",
         "/garra/dashboard",
         "/garra/home",
-        "/auth/clerk/sign-in",
-        "/auth/clerk/sign-up",
         "/garra/admin/roles",
         "/garra/admin/users",
         "/garra/case/$caseId"
@@ -501,12 +455,6 @@ export const routeTree = rootRoute
     "/theme/typography": {
       "filePath": "theme/typography.tsx",
       "parent": "/theme"
-    },
-    "/auth/clerk/sign-in": {
-      "filePath": "auth/clerk/sign-in.tsx"
-    },
-    "/auth/clerk/sign-up": {
-      "filePath": "auth/clerk/sign-up.tsx"
     },
     "/garra/admin/roles": {
       "filePath": "garra/admin/roles.tsx"
