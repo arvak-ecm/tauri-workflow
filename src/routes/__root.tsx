@@ -27,7 +27,6 @@ const authType = import.meta.env.VITE_AUTH_TYPE as 'MSAL' | 'CLERK'
 
 function App() {
   const { mode } = Route.useLoaderData()
-
   if (!authActivated) {
     switch (authType) {
       case 'MSAL':
