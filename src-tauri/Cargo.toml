@@ -29,6 +29,7 @@ tauri-plugin-opener = "2"
 tauri-plugin-oauth = "2"
 tauri-plugin-deep-link = "2"
 tauri-plugin-single-instance = {version = "2", features = ["deep-link"] }
+tauri-plugin-dialog = "2"
 aes-gcm="0.10.3"
 hex="0.4.3"
 tokio = { version = "1", features = ["full"] }

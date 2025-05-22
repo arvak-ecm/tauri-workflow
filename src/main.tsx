@@ -65,6 +65,7 @@ if (rootElement.innerHTML && rootElement.children.length) {
   }
 }
 function loadApp() {
+  initializeStore()
   const root = ReactDOM.createRoot(rootElement)
 
   if (AUTH_TYPE === 'MSAL') {

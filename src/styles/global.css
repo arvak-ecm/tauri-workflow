@@ -146,6 +146,10 @@
   .scrollbar-custom {
     @apply [&::-webkit-scrollbar-thumb]:bg-primary/50 [&::-webkit-scrollbar-track]:bg-primary/10 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:rounded-sm;
   }
+
+  .ProseMirror {
+    @apply focus:ring-0 focus:outline-none focus-visible:ring-0;
+  }
 }
 
 /* Start Clerk */

@@ -105,7 +105,16 @@ const themeDefault = {
 const menuDocBuilder: MenuProps = {
   routeDefault: '/docbuilder/designer',
   groups: [],
-  single: []
+  single: [
+    {
+      type: 'single',
+      id: 'home',
+      name: 'Designer',
+      description: 'Designer docs for builder json',
+      icon: 'Home',
+      href: '/docbuilder/designer'
+    }
+  ]
 }
 
 const menuGarra: MenuProps = {

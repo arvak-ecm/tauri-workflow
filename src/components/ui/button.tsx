@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs',
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90 data-[active]:!bg-primary/90 shadow-xs',
         destructive:
           'bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white shadow-xs',
         outline:
@@ -24,7 +24,8 @@ const buttonVariants = cva(
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
         icon: 'size-9',
         xs: 'h-7 px-3 py-1 has-[>svg]:px-2',
-        rowTable: 'h-7 px-3 py-1 has-[>svg]:px-2'
+        rowTable: 'h-7 px-3 py-1 has-[>svg]:px-2',
+        toolbar: 'h-5 px-3 py-1 has-[>svg]:px-2'
       }
     },
     defaultVariants: {
@@ -34,37 +35,41 @@ const buttonVariants = cva(
   }
 )
 
-function Button({
-  className,
-  variant,
-  size,
-  tooltip,
-  asChild = false,
-  ...props
-}: React.ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-    tooltip?: string
-  }) {
-  const Comp = asChild ? Slot : 'button'
-  return (
-    <>
-      {tooltip ? (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }))} {...props} />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{tooltip}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      ) : (
-        <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }))} {...props} />
-      )}
-    </>
-  )
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+  tooltip?: string
 }
 
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, tooltip, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button'
+    return (
+      <>
+        {tooltip ? (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Comp
+                  data-slot='button'
+                  className={cn(buttonVariants({ variant, size, className }))}
+                  {...props}
+                  ref={ref}
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{tooltip}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        ) : (
+          <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }))} {...props} ref={ref} />
+        )}
+      </>
+    )
+  }
+)
+
+Button.displayName = 'Button'
 export { Button, buttonVariants }

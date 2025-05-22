@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "dialog",
+  "local": true,
+  "description": "Capability for the dialog",
+  "windows": ["main"],
+  "permissions": ["dialog:default"],
+  "platforms": ["macOS", "windows"]
+}

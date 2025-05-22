@@ -50,6 +50,7 @@ pub fn run() {
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_http::init())
+				.plugin(tauri_plugin_dialog::init())
         .plugin(
             tauri_plugin_store::Builder::default()
                 .register_deserialize_fn("deserialize_cripto".to_owned(), cmd::deserialize_cripto)
